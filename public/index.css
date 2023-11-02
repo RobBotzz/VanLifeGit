@@ -12,6 +12,29 @@ html, body {
     
 }
 
+/* ============ General styles ========= */
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* ============ Menu Bar ============*/
 
 .menu {
@@ -60,15 +83,14 @@ html, body {
     padding: 40px 5%;
 }
 
-.home h1 {
-    margin: 0;
-}
-
 .home p {
     margin-bottom: 40px;
 }
 
-.home button {
+.vans-link{
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
     background-color: #FF8C38;
     width: 100%;
     color: white;
@@ -93,11 +115,6 @@ html, body {
     padding: 40px 5%;
 }
 
-.about-wrapper h1 {
-    margin: 0;
-    margin-bottom: 30px;
-}
-
 .about-wrapper p {
     margin-bottom: 20px;
 }
@@ -109,11 +126,9 @@ html, body {
     padding: 30px;
 }
 
-.about-explore h2 {
-    margin: 0;
-}
-
-.about-explore button {
+.explore-vans-btn {
+    display: inline-flex;
+    text-decoration: none;
     margin-top: 30px;
     background-color: black;
     border: none;
@@ -121,4 +136,79 @@ html, body {
     font-weight: 600;
     border-radius: 5px;
     padding: 14px;
+}
+
+
+/* ============ Vans Page ============*/
+
+.vans {
+    padding: 0 5%;
+    margin-bottom: 50px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.filter {
+    background-color: #FFEAD0;
+    color: #4D4D4D;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.clear-filter {
+    width: 100%;
+    display: flex;
+    color: #444444;
+    text-decoration: underline;
+    justify-content: center;
+}
+
+.vans-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+}
+
+/* ============ Van =================*/
+
+.van-link-wrapper {
+    text-decoration: none;
+    color: none;
+}
+
+.van {
+
+}
+
+.van img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.van h3{
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.van-type {
+    background-color: grey;
+    font-size: 20px;
+    padding: 8px 24px;
+    border-radius: 5px;
+    color: #FFEAD0;
+    display: inline-block;
+    margin: 0;
 }
