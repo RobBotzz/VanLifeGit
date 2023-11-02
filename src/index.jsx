@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import Home from "./pages/Home.jsx";
+import Home from "../src/pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Vans from "./pages/Vans.jsx";
 import VanDetail from "./pages/VanDetail.jsx";
