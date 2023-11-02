@@ -12,7 +12,7 @@ import "./server.js";
 function Navbar() {
   return (
     <div className="menu">
-      <Link to="home" className="menu-logo">
+      <Link to="/" className="menu-logo">
         #VANLIFE
       </Link>
       <div>
@@ -41,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/vans" element={<Vans />} />
           <Route path="/vans/:id" element={<VanDetail />} />

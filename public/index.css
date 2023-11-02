@@ -15,18 +15,22 @@ html, body {
 /* ============ General styles ========= */
 
 h1 {
-    font-size: 38px;
+    font-size: 8vw;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 8vw;
     margin: 0;
     margin-bottom: 30px;
 }
 
 h3 {
-    font-size: 22px;
+    font-size: 4vw;
     margin: 0;
+}
+
+p {
+    font-size: 3.5vw;
 }
 
 .container {
@@ -176,7 +180,7 @@ h3 {
 .vans-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 40px;
+    grid-column-gap: 6vw;
     grid-row-gap: 40px;
 }
 
@@ -205,8 +209,8 @@ h3 {
 
 .van-type {
     background-color: grey;
-    font-size: 20px;
-    padding: 8px 24px;
+    font-size: 4vw;
+    padding: 1.5vw 4vw;
     border-radius: 5px;
     color: #FFEAD0;
     display: inline-block;
