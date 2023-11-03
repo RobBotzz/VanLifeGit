@@ -16,10 +16,10 @@ function Navbar() {
         #VANLIFE
       </Link>
       <div>
-        <Link to="about" className="menu-link">
+        <Link to="/about" className="menu-link">
           About
         </Link>
-        <Link to="vans" className="menu-link">
+        <Link to="/vans" className="menu-link">
           Vans
         </Link>
       </div>
@@ -42,6 +42,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/vans" element={<Vans />} />
           <Route path="/vans/:id" element={<VanDetail />} />

@@ -2,16 +2,9 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-export default function Van(props) {
-  const typeColor = {
-    backgroundColor:
-      props.type === "simple"
-        ? "#E17654"
-        : props.type === "rugged"
-        ? "#115E59"
-        : "#161616",
-  };
+import VanType from "./VanType.jsx";
 
+export default function Van(props) {
   return (
     <Link to={`/vans/${props.id}`} className="van-link-wrapper">
       <div className="van">
@@ -20,9 +13,7 @@ export default function Van(props) {
           <h3>{props.name}</h3>
           <h3>${props.price}/day</h3>
         </div>
-        <p style={typeColor} className="van-type">
-          {props.type[0].toUpperCase() + props.type.substring(1)}
-        </p>
+        <VanType type={props.type} />
       </div>
     </Link>
   );

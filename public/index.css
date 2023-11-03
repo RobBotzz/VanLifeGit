@@ -77,6 +77,21 @@ p {
     
 }
 
+/* ============ Loading Page ============*/
+
+.loading {
+    height: 80vh;
+    background-color: #DDDDDD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-label {
+    font-size: 35px;
+    color: #FFFFFF;
+}
+
 /* ============ Home Page ============*/
 
 .home {
@@ -109,14 +124,15 @@ p {
 
 .about img {
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .about {
-    
+    margin-bottom: 50px;
 }
 
 .about-wrapper {
-    padding: 40px 5%;
+    padding: 0 5%;
 }
 
 .about-wrapper p {
@@ -205,7 +221,7 @@ p {
     font-weight: 400;
     margin-bottom: 10px;
     color: black;
-}
+}   
 
 .van-type {
     background-color: grey;
@@ -215,4 +231,36 @@ p {
     color: #FFEAD0;
     display: inline-block;
     margin: 0;
+}
+
+/* ============ VanDetail =================*/
+
+.vanDetail {
+    padding: 0 5%;
+    margin-bottom: 50px;
+}
+
+.vanDetail-link {
+    color: grey;
+    font-size: small;
+}
+
+.vanDetail img {
+    width: 100%;
+    margin: 3vw 0;
+}
+
+.vanDetail h2 {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+}
+
+.vanDetail button {
+    width: 100%;
+    background-color: #FF8C38;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 1vw;
+    padding: 3vw;
 }
