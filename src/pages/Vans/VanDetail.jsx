@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-import Loading from "./Loading.jsx";
-import VanType from "../components/VanType.jsx";
+import Loading from "../Loading.jsx";
+import VanType from "../../components/Vans/VanType.jsx";
 
 export default function VanDetail() {
   const params = useParams();

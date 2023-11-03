@@ -1,7 +1,7 @@
 import React from "react";
 
-import Van from "../components/Van.jsx";
-import Loading from "./Loading.jsx";
+import Van from "../../components/Vans/Van.jsx";
+import Loading from "../Loading.jsx";
 
 export default function Vans() {
   const [vansData, setVansData] = React.useState(null);

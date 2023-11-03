@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
-import Vans from "./pages/Vans.jsx";
-import VanDetail from "./pages/VanDetail.jsx";
+import Vans from "./pages/Vans/Vans.jsx";
+import VanDetail from "./pages/Vans/VanDetail.jsx";
 
 import Layout from "./components/Layout.jsx";
 
