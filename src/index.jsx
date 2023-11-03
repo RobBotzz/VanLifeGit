@@ -4,12 +4,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
+
 import Vans from "./pages/Vans/Vans.jsx";
 import VanDetail from "./pages/Vans/VanDetail.jsx";
+
 import HostLayout from "./pages/Host/HostLayout.jsx";
 import Dashboard from "./pages/Host/Dashboard.jsx";
 import Reviews from "./pages/Host/Reviews.jsx";
 import HostVans from "./pages/Host/HostVans.jsx";
+import HostVansDetailLayout from "./pages/Host/HostVansDetailLayout.jsx";
+import HostVansDetailDetail from "./components/Host/HostVansDetailDetail.jsx";
+import HostVansDetailPrice from "./components/Host/HostVansDetailPrice.jsx";
+import HostVansDetailPhotos from "./components/Host/HostVansDetailPhotos.jsx";
 import Income from "./pages/Host/Income.jsx";
 
 import Layout from "./components/Layout.jsx";
@@ -34,6 +40,11 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="reviews" element={<Reviews />} />
               <Route path="vans" element={<HostVans />} />
+              <Route path="vans/:id" element={<HostVansDetailLayout />}>
+                <Route index element={<HostVansDetailDetail />} />
+                <Route path="pricing" element={<HostVansDetailPrice />} />
+                <Route path="photos" element={<HostVansDetailPhotos />} />
+              </Route>
               <Route path="income" element={<Income />} />
             </Route>
           </Route>

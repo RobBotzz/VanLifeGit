@@ -19,7 +19,6 @@ export default function HostVans() {
         img={van.imageUrl}
         name={van.name}
         price={van.price}
-        type={van.type}
       />
     );
   });

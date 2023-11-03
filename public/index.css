@@ -34,6 +34,11 @@ p {
     font-size: 3.5vw;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .site-wrapper {
     min-height: 100vh;
     display: flex;
@@ -51,7 +56,6 @@ p {
 /* Van */
 
 .van-link-wrapper {
-    text-decoration: none;
     color: none;
 }
 
@@ -90,7 +94,6 @@ p {
 }
 
 .hostNav-link {
-    text-decoration: none;
     color: #4D4D4D;
     margin-right: 5vw;
 }
@@ -130,10 +133,12 @@ p {
 
 .hostVanIcon-text h3 {
     margin: 0;
+    color: black;
 }
 
 .hostVanIcon-text p {
     margin: 0;
+    color: black;
 }
 
 
@@ -149,14 +154,12 @@ p {
 
 .menu-logo {
     font-weight: bold;
-    text-decoration: none;
     color: black;
     font-size: 24px;
 }
 
 .menu-link {
     font-size: 17px;
-    text-decoration: none;
     color: #888888;
     margin-left: 20px;
     font-weight: bolder;
@@ -221,7 +224,6 @@ p {
 .vans-link{
     display: inline-block;
     text-align: center;
-    text-decoration: none;
     background-color: #FF8C38;
     width: 100%;
     color: white;
@@ -260,7 +262,6 @@ p {
 
 .explore-vans-btn {
     display: inline-flex;
-    text-decoration: none;
     margin-top: 30px;
     background-color: black;
     border: none;
@@ -348,10 +349,54 @@ p {
 
 .hostLayout {
     padding: 0 5%;
+    margin-bottom: 50px;
 }
 
 /* ============ HostVans =================*/
 
 .hostVans h2 {
     margin: 6vw 0;
+}
+
+/* ============ HostVansDetail =================*/
+
+.hostVansDetail {
+
+}
+
+.hostVansDetail-card {
+    margin: 50px 0;
+    background-color: white;
+    padding: 3vw;
+}
+
+.hostVansDetail-card-header {
+    display: flex;
+    height: 25vw;
+}
+
+.hostVansDetail-card-header img {
+    height: 100%;
+    border-radius: 5px;
+    margin-right: 2vw;
+}
+
+.hostVansDetail-card-header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FF8C38;
+}
+
+.hostVansDetail-card-header-text h2 {
+    margin: 0;
+}
+
+.hostVansDetail-card-header-text h3 {
+    margin: 0;
+    background-color: green;
+}
+
+.hostVansDetail-card-nav {
+
 }
