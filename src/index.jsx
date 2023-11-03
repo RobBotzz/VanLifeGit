@@ -7,47 +7,23 @@ import About from "./pages/About.jsx";
 import Vans from "./pages/Vans.jsx";
 import VanDetail from "./pages/VanDetail.jsx";
 
+import Layout from "./components/Layout.jsx";
+
 import "./server.js";
-
-function Navbar() {
-  return (
-    <div className="menu">
-      <Link to="/" className="menu-logo">
-        #VANLIFE
-      </Link>
-      <div>
-        <Link to="/about" className="menu-link">
-          About
-        </Link>
-        <Link to="/vans" className="menu-link">
-          Vans
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="footer">
-      <p>Ⓒ 2022 #VANLIFE</p>;
-    </div>
-  );
-}
 
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/vans" element={<Vans />} />
-          <Route path="/vans/:id" element={<VanDetail />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/vans" element={<Vans />} />
+            <Route path="/vans/:id" element={<VanDetail />} />
+          </Route>
         </Routes>
-        <Footer />
       </BrowserRouter>
     </div>
   );
