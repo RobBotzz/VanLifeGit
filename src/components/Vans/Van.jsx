@@ -6,7 +6,7 @@ import VanType from "./VanType.jsx";
 
 export default function Van(props) {
   return (
-    <Link to={`/vans/${props.id}`} className="van-link-wrapper">
+    <Link to={props.id} className="van-link-wrapper">
       <div className="van">
         <img src={props.img} alt="Shows a van" />
         <div className="container">
