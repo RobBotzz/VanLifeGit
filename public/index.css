@@ -234,6 +234,30 @@ a {
     color: black;
 }
 
+/* ============ Loading Page ============*/
+
+.notFound {
+    margin-top: 10vw;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notFound h2 {
+    font-size: 7vw;
+    margin-bottom: 8vw;
+}
+
+.notFound-home {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 3vw;
+    border-radius: 1vw;
+}
+
 /* ============ Home Page ============*/
 
 .home {

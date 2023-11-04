@@ -20,6 +20,8 @@ import Income from "./pages/Host/Income.jsx";
 
 import Layout from "./components/Layout.jsx";
 
+import NotFound from "./pages/NotFound.jsx";
+
 import "./server.js";
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
               </Route>
               <Route path="income" element={<Income />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

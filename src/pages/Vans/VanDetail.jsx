@@ -17,9 +17,13 @@ export default function VanDetail() {
       .then((data) => setVanData(data.vans));
   }, [params.id]);
 
+  //Determine text that backLink displays based on selected filter of previous page
+  const prevParams = new URLSearchParams(location.state);
+  const backLinkText = `Back to ${prevParams.get("type") || "all"} vans`;
+
   return vanData ? (
     <div className="vanDetail">
-      <BackLink linkName="Back to all vans" state={location.state} />
+      <BackLink linkName={backLinkText} state={location.state} />
 
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
       <VanType type={vanData.type} size="normal" />
