@@ -209,7 +209,7 @@ a {
 /* ============ Loading Page ============*/
 
 .loading {
-    height: 90vh;
+    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -381,6 +381,7 @@ a {
 .hostVansDetail-card {
     margin: 6vw 0;
     padding: 5vw;
+    border-radius: 2vw;
     background-color: white;
 }
 
