@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import Loading from "../Loading.jsx";
 import VanType from "../../components/Vans/VanType.jsx";
@@ -7,6 +7,7 @@ import BackLink from "../../components/BackLink.jsx";
 
 export default function VanDetail() {
   const params = useParams();
+  const location = useLocation();
 
   const [vanData, setVanData] = React.useState(null);
 
@@ -18,7 +19,7 @@ export default function VanDetail() {
 
   return vanData ? (
     <div className="vanDetail">
-      <BackLink linkName="Back to all vans" />
+      <BackLink linkName="Back to all vans" state={location.state} />
 
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
       <VanType type={vanData.type} size="normal" />

@@ -23,6 +23,7 @@ export default function Vans() {
     return (
       <Van
         key={van.id}
+        searchParams={searchParams}
         id={van.id}
         img={van.imageUrl}
         name={van.name}

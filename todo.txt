@@ -2,3 +2,4 @@ What to do //////
 
 - Make loading screen take full height to center "Loading..."
 
+- Improve performance (less API requests)
