@@ -311,6 +311,21 @@ a {
     justify-content: center;
 }
 
+.filter.simple:hover, .filter.simple.selected {
+    background-color: #E17654;
+    color: #FFEAD0;
+}
+
+.filter.luxury:hover, .filter.luxury.selected {
+    background-color: #161616;
+    color: #FFEAD0;
+}
+
+.filter.rugged:hover, .filter.rugged.selected {
+    background-color: #115E59;
+    color: #FFEAD0;
+}
+
 .clear-filter {
     width: 100%;
     display: flex;

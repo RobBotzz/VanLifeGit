@@ -48,19 +48,19 @@ export default function Vans() {
       <h2>Explore our van options</h2>
       <div className="filters">
         <p
-          className="filter"
+          className={`filter simple ${typeFilter === "simple" && "selected"}`}
           onClick={() => handleFilterChange("type", "simple")}
         >
           Simple
         </p>
         <p
-          className="filter"
+          className={`filter luxury ${typeFilter === "luxury" && "selected"}`}
           onClick={() => handleFilterChange("type", "luxury")}
         >
           Luxury
         </p>
         <p
-          className="filter"
+          className={`filter rugged ${typeFilter === "rugged" && "selected"}`}
           onClick={() => handleFilterChange("type", "rugged")}
         >
           Rugged
