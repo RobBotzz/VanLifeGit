@@ -21,7 +21,7 @@ export default function VanDetail() {
         Back to all vans
       </Link>
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
-      <VanType type={vanData.type} />
+      <VanType type={vanData.type} size="normal" />
       <h2>{vanData.name}</h2>
       <h3>${vanData.price}/day</h3>
       <p>{vanData.description}</p>

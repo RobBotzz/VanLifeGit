@@ -1,12 +1,20 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import HostNav from "../../components/Host/HostNav.jsx";
+import Nav from "../../components/Nav.jsx";
 
 export default function HostLayout() {
   return (
     <div className="hostLayout">
-      <HostNav />
+      <Nav
+        size="normal"
+        pathInfo={[
+          { path: "/host", linkName: "Host", end: true },
+          { path: "/host/income", linkName: "Income", end: false },
+          { path: "/host/vans", linkName: "Vans", end: false },
+          { path: "/host/reviews", linkName: "Reviews", end: false },
+        ]}
+      />
       <Outlet />
     </div>
   );

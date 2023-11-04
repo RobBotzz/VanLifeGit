@@ -1,5 +1,7 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import Nav from "./Nav.jsx";
 
 export default function Header() {
   return (
@@ -7,32 +9,14 @@ export default function Header() {
       <Link to="/" className="menu-logo">
         #VANLIFE
       </Link>
-      <div>
-        <NavLink
-          to="host"
-          className={({ isActive }) =>
-            isActive ? "menu-link menu-link-active" : "menu-link"
-          }
-        >
-          Host
-        </NavLink>
-        <NavLink
-          to="about"
-          className={({ isActive }) =>
-            isActive ? "menu-link menu-link-active" : "menu-link"
-          }
-        >
-          About
-        </NavLink>
-        <NavLink
-          to="vans"
-          className={({ isActive }) =>
-            isActive ? "menu-link menu-link-active" : "menu-link"
-          }
-        >
-          Vans
-        </NavLink>
-      </div>
+      <Nav
+        size="large"
+        pathInfo={[
+          { path: "host", linkName: "Host", end: false },
+          { path: "about", linkName: "About", end: false },
+          { path: "vans", linkName: "Vans", end: false },
+        ]}
+      />
     </header>
   );
 }

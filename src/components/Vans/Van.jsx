@@ -13,7 +13,7 @@ export default function Van(props) {
           <h3>{props.name}</h3>
           <h3>${props.price}/day</h3>
         </div>
-        <VanType type={props.type} />
+        <VanType type={props.type} size="normal" />
       </div>
     </Link>
   );

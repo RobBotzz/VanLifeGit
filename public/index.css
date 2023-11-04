@@ -30,6 +30,12 @@ h3 {
     margin: 0;
 }
 
+h4 {
+    font-size: 3.4vw;
+    font-weight: normal;
+    margin: 0;
+}
+
 p {
     font-size: 3.5vw;
 }
@@ -52,6 +58,38 @@ a {
 }
 
 /* ============ COMPONENTS ==========*/
+
+/* Nav */
+
+.nav-link {
+    color: #888888;
+}
+
+.nav-link-large {
+    font-size: 3.5vw;
+    margin-left: 4vw;
+    font-weight: bold;
+}
+
+.nav-link-normal {
+    font-size: 3.2vw;
+    margin-left: 2vw;
+}
+
+.nav-link-small {
+    font-size: 2.5vw;
+    margin-right: 2vw;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.nav-link-active {
+    color: black;
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5vw;
+}
 
 /* Van */
 
@@ -77,36 +115,24 @@ a {
 
 /* VanType */
 
-.van-type {
-    background-color: grey;
+.van-type-normal {
     font-size: 4vw;
     padding: 1.5vw 4vw;
     border-radius: 5px;
     color: #FFEAD0;
     display: inline-block;
     margin: 0;
+    align-self: flex-start;
 }
 
-/* HostNav */
-
-.hostNav {
-
-}
-
-.hostNav-link {
-    color: #4D4D4D;
-    margin-right: 5vw;
-}
-
-.hostNav-link:hover {
-    color: black;
-}
-
-.hostNav-link-active {
-    border-bottom: 1px solid black;
-    padding-bottom: 3px;
-    color: black;
-    font-weight: bold;
+.van-type-small {
+    font-size: 2.8vw;
+    padding: 0.6vw 2vw;
+    border-radius: 4px;
+    color: #FFEAD0;
+    display: inline-block;
+    margin: 0;
+    align-self: flex-start;
 }
 
 /* HostVanIcon */
@@ -156,23 +182,6 @@ a {
     font-weight: bold;
     color: black;
     font-size: 24px;
-}
-
-.menu-link {
-    font-size: 17px;
-    color: #888888;
-    margin-left: 20px;
-    font-weight: bolder;
-}
-
-.menu-link:hover {
-    color: black;
-}
-
-.menu-link-active {
-    color: black;
-    border-bottom: 1px solid black;
-    padding-bottom: 3px;
 }
 
 /* ============ Footer Bar ============*/
@@ -361,18 +370,19 @@ a {
 /* ============ HostVansDetail =================*/
 
 .hostVansDetail {
-
+    
 }
 
 .hostVansDetail-card {
     margin: 50px 0;
-    background-color: white;
     padding: 3vw;
+    background-color: white;
 }
 
 .hostVansDetail-card-header {
     display: flex;
     height: 25vw;
+    margin-bottom: 2vw
 }
 
 .hostVansDetail-card-header img {
@@ -385,16 +395,14 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #FF8C38;
-}
-
-.hostVansDetail-card-header-text h2 {
-    margin: 0;
 }
 
 .hostVansDetail-card-header-text h3 {
-    margin: 0;
-    background-color: green;
+    margin-top: 2vw;
+}
+
+.hostVansDetail-card-header-text h4 {
+    margin-top: 1vw;
 }
 
 .hostVansDetail-card-nav {

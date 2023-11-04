@@ -11,7 +11,7 @@ export default function VanType(props) {
   };
 
   return (
-    <p style={typeColor} className="van-type">
+    <p style={typeColor} className={`van-type-${props.size}`}>
       {props.type[0].toUpperCase() + props.type.substring(1)}
     </p>
   );
