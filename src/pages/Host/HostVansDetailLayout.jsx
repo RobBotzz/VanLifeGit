@@ -31,31 +31,28 @@ export default function HostVanDetailLayout() {
             </h4>
           </div>
         </div>
-        {/* <div className="hostVansDetail-card-nav">
-          <Link to={`/host/vans/${params.id}`}>Details</Link>
-          <Link to={`/host/vans/${params.id}/pricing`}>Pricing</Link>
-          <Link to={`/host/vans/${params.id}/photos`}>Photos</Link>
-        </div> */}
-        <Nav
-          size="small"
-          pathInfo={[
-            {
-              path: ".",
-              linkName: "Details",
-              end: true,
-            },
-            {
-              path: "pricing",
-              linkName: "Pricing",
-              end: false,
-            },
-            {
-              path: "photos",
-              linkName: "Photos",
-              end: false,
-            },
-          ]}
-        />
+        <div className="hostVansDetail-card-nav">
+          <Nav
+            size="small"
+            pathInfo={[
+              {
+                path: ".",
+                linkName: "Details",
+                end: true,
+              },
+              {
+                path: "pricing",
+                linkName: "Pricing",
+                end: false,
+              },
+              {
+                path: "photos",
+                linkName: "Photos",
+                end: false,
+              },
+            ]}
+          />
+        </div>
         <Outlet context={{ vanData }} />
       </div>
     </div>

@@ -5,21 +5,21 @@ export default function HostVansDetailDetail() {
   const { vanData } = useOutletContext();
 
   return (
-    <div className="hostVanDetailDetail">
-      <h4 className="hostVanDetailDetail-info">
-        <b>Name: </b>
+    <div className="hostVansDetailDetail">
+      <h4 className="hostVansDetailDetail-info">
+        <span>Name: </span>
         {vanData.name}
       </h4>
-      <h4 className="hostVanDetailDetail-info">
-        <b>Category: </b>
-        {vanData.type}
+      <h4 className="hostVansDetailDetail-info">
+        <span>Category: </span>
+        {vanData.type[0].toUpperCase() + vanData.type.substring(1)}
       </h4>
-      <h4 className="hostVanDetailDetail-info">
-        <b>Description: </b>
+      <h4 className="hostVansDetailDetail-info">
+        <span>Description: </span>
         {vanData.description}
       </h4>
-      <h4 className="hostVanDetailDetail-info">
-        <b>Visibility: </b>Public
+      <h4 className="hostVansDetailDetail-info">
+        <span>Visibility: </span>Public
       </h4>
     </div>
   );

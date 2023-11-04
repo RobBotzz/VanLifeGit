@@ -71,19 +71,19 @@ a {
 }
 
 .nav-link-large {
-    font-size: 3.5vw;
+    font-size: 4.2vw;
     margin-left: 4vw;
     font-weight: bold;
 }
 
 .nav-link-normal {
-    font-size: 3.2vw;
-    margin-left: 2vw;
+    font-size: 4vw;
+    margin-right: 4vw;
 }
 
 .nav-link-small {
-    font-size: 2.5vw;
-    margin-right: 2vw;
+    font-size: 3.8vw;
+    margin-right: 3.5vw;
 }
 
 .nav-link:hover {
@@ -131,8 +131,8 @@ a {
 }
 
 .van-type-small {
-    font-size: 2.8vw;
-    padding: 0.6vw 2vw;
+    font-size: 4vw;
+    padding: 1vw 2.4vw;
     border-radius: 4px;
     color: #FFEAD0;
     display: inline-block;
@@ -209,8 +209,7 @@ a {
 /* ============ Loading Page ============*/
 
 .loading {
-    height: 80vh;
-    background-color: #DDDDDD;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,7 +217,7 @@ a {
 
 .loading-label {
     font-size: 35px;
-    color: #FFFFFF;
+    color: black;
 }
 
 /* ============ Home Page ============*/
@@ -376,25 +375,25 @@ a {
 /* ============ HostVansDetail =================*/
 
 .hostVansDetail {
-    margin: 7vw 0;
+    margin-top: 10vw;
 }
 
 .hostVansDetail-card {
-    margin: 4vw 0;
-    padding: 3vw;
+    margin: 6vw 0;
+    padding: 5vw;
     background-color: white;
 }
 
 .hostVansDetail-card-header {
     display: flex;
-    height: 25vw;
+    height: 32vw;
     margin-bottom: 2vw
 }
 
 .hostVansDetail-card-header img {
     height: 100%;
-    border-radius: 5px;
-    margin-right: 2vw;
+    border-radius: 2px;
+    margin-right: 3vw;
 }
 
 .hostVansDetail-card-header-text {
@@ -404,13 +403,26 @@ a {
 }
 
 .hostVansDetail-card-header-text h3 {
+    font-size: 6vw;
     margin-top: 2vw;
 }
 
 .hostVansDetail-card-header-text h4 {
+    font-size: 5vw;
     margin-top: 1vw;
 }
 
 .hostVansDetail-card-nav {
+    margin: 4vw 0 8vw 0;
+}
 
+/* ============ HostVansDetailDetails =================*/
+
+.hostVansDetailDetail-info {
+    margin: 3vw 0;
+}
+
+.hostVansDetailDetail-info span {
+    font-weight: bold;
+    margin-right: .8vw;
 }
