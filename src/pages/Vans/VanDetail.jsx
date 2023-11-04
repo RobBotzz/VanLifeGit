@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Loading from "../Loading.jsx";
 import VanType from "../../components/Vans/VanType.jsx";
+import BackLink from "../../components/BackLink.jsx";
 
 export default function VanDetail() {
   const params = useParams();
@@ -17,9 +18,8 @@ export default function VanDetail() {
 
   return vanData ? (
     <div className="vanDetail">
-      <Link to="/vans" className="vanDetail-link">
-        Back to all vans
-      </Link>
+      <BackLink path="/vans" linkName="Back to all vans" />
+
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
       <VanType type={vanData.type} size="normal" />
       <h2>{vanData.name}</h2>

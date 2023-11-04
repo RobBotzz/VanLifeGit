@@ -57,6 +57,11 @@ a {
     align-items: center;
 }
 
+.centered {
+    display: flex;
+    align-items: center;
+}
+
 /* ============ COMPONENTS ==========*/
 
 /* Nav */
@@ -331,7 +336,8 @@ a {
 
 .vanDetail-link {
     color: grey;
-    font-size: small;
+    font-size: 3vw;
+    text-decoration: underline; 
 }
 
 .vanDetail img {
@@ -370,11 +376,11 @@ a {
 /* ============ HostVansDetail =================*/
 
 .hostVansDetail {
-    
+    margin: 7vw 0;
 }
 
 .hostVansDetail-card {
-    margin: 50px 0;
+    margin: 4vw 0;
     padding: 3vw;
     background-color: white;
 }
