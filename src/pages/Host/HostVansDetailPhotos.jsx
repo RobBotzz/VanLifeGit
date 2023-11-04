@@ -5,8 +5,10 @@ export default function HostVansDetailPhotos() {
   const { vanData } = useOutletContext();
 
   return (
-    <div className="hostVanDetailPhotos">
-      <img src={vanData.imageUrl} alt="Shows van" />
+    <div className="hostVansDetailPhotos">
+      <div className="hostVansDetailPhotos-photos">
+        <img src={vanData.imageUrl} alt="Shows van" />
+      </div>
     </div>
   );
 }

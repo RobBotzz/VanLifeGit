@@ -426,3 +426,34 @@ a {
     font-weight: bold;
     margin-right: .8vw;
 }
+
+/* ============ HostVansDetailDetails =================*/
+
+.hostVansDetailPrice {
+
+}
+
+.hostVansDetailPrice-price {
+    font-size: 5vw;
+    letter-spacing: .5vw;
+}
+
+.hostVansDetailPrice-price span {
+    font-size: 4vw;
+    color:gray;
+}
+
+/* ============ HostVansDetailDetails =================*/
+
+.hostVansDetailPhotos {
+
+}
+
+.hostVansDetailPhotos-photos {
+
+}
+
+.hostVansDetailPhotos-photos img {
+    width: 25vw;
+    border-radius: 1vw;
+}
