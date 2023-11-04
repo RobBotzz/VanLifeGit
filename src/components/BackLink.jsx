@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function BackLink({ path, linkName }) {
   return (
-    <Link to={path ? path : "./.."} className="vanDetail-link centered">
+    <Link to={path || "./.."} className="vanDetail-link centered">
       <svg
         width="10"
         height="10"
