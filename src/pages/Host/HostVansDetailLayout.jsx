@@ -19,7 +19,7 @@ export default function HostVanDetailLayout() {
 
   return vanData ? (
     <div className="hostVansDetail">
-      <BackLink path="/host/vans" linkName="Back to all vans" />
+      <BackLink linkName="Back to all vans" />
       <div className="hostVansDetail-card">
         <div className="hostVansDetail-card-header">
           <img src={vanData.imageUrl} alt="Shows Van" />
@@ -40,23 +40,23 @@ export default function HostVanDetailLayout() {
           size="small"
           pathInfo={[
             {
-              path: `/host/vans/${params.id}`,
+              path: ".",
               linkName: "Details",
               end: true,
             },
             {
-              path: `/host/vans/${params.id}/pricing`,
+              path: "pricing",
               linkName: "Pricing",
               end: false,
             },
             {
-              path: `/host/vans/${params.id}/photos`,
+              path: "photos",
               linkName: "Photos",
               end: false,
             },
           ]}
         />
-        <Outlet />
+        <Outlet context={{ vanData }} />
       </div>
     </div>
   ) : (

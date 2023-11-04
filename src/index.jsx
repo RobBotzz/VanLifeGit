@@ -13,9 +13,9 @@ import Dashboard from "./pages/Host/Dashboard.jsx";
 import Reviews from "./pages/Host/Reviews.jsx";
 import HostVans from "./pages/Host/HostVans.jsx";
 import HostVansDetailLayout from "./pages/Host/HostVansDetailLayout.jsx";
-import HostVansDetailDetail from "./components/Host/HostVansDetailDetail.jsx";
-import HostVansDetailPrice from "./components/Host/HostVansDetailPrice.jsx";
-import HostVansDetailPhotos from "./components/Host/HostVansDetailPhotos.jsx";
+import HostVansDetailDetail from "./pages/Host/HostVansDetailDetail.jsx";
+import HostVansDetailPrice from "./pages/Host/HostVansDetailPrice.jsx";
+import HostVansDetailPhotos from "./pages/Host/HostVansDetailPhotos.jsx";
 import Income from "./pages/Host/Income.jsx";
 
 import Layout from "./components/Layout.jsx";

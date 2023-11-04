@@ -18,7 +18,7 @@ export default function VanDetail() {
 
   return vanData ? (
     <div className="vanDetail">
-      <BackLink path="/vans" linkName="Back to all vans" />
+      <BackLink linkName="Back to all vans" />
 
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
       <VanType type={vanData.type} size="normal" />

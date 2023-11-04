@@ -9,10 +9,10 @@ export default function HostLayout() {
       <Nav
         size="normal"
         pathInfo={[
-          { path: "/host", linkName: "Host", end: true },
-          { path: "/host/income", linkName: "Income", end: false },
-          { path: "/host/vans", linkName: "Vans", end: false },
-          { path: "/host/reviews", linkName: "Reviews", end: false },
+          { path: ".", linkName: "Host", end: true },
+          { path: "income", linkName: "Income", end: false },
+          { path: "vans", linkName: "Vans", end: false },
+          { path: "reviews", linkName: "Reviews", end: false },
         ]}
       />
       <Outlet />

@@ -5,6 +5,7 @@ export default function Nav({ pathInfo, size }) {
   const links = pathInfo?.map(({ path, linkName, end }) => {
     return (
       <NavLink
+        key={linkName}
         to={path}
         className={({ isActive }) =>
           (isActive ? `nav-link-active` : null) + ` nav-link nav-link-${size}`
