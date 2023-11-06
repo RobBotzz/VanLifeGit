@@ -1,10 +1,12 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../api.js";
+import { requireAuth } from "../../utils.js";
 
 import HostVanIcon from "../../components/Host/HostVanIcon.jsx";
 
-export function loader() {
+export async function loader() {
+  await requireAuth();
   return getHostVans();
 }
 

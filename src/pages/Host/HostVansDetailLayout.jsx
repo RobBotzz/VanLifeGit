@@ -1,12 +1,14 @@
 import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../api.js";
+import { requireAuth } from "../../utils.js";
 
 import VanType from "../../components/Vans/VanType.jsx";
 import Nav from "../../components/Nav.jsx";
 import BackLink from "../../components/BackLink.jsx";
 
-export function loader({ params }) {
+export async function loader({ params }) {
+  await requireAuth();
   return getHostVans(params.id);
 }
 
