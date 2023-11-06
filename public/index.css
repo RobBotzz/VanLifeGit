@@ -234,7 +234,7 @@ a {
     color: black;
 }
 
-/* ============ Loading Page ============*/
+/* ============ Not Found Page ============*/
 
 .notFound {
     margin-top: 10vw;
@@ -257,6 +257,78 @@ a {
     padding: 3vw;
     border-radius: 1vw;
 }
+
+/* ============ Error Page ============*/
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error h1 {
+    font-size: 18vw;
+    margin-bottom: 3vw;
+}
+
+.error h2 {
+    font-style: italic;
+}
+
+/* ============ Error Page ============*/
+
+.login {
+    padding: 6vw 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login h2 {
+    font-size: 6vw;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1vw;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-bottom: 4vw;
+}
+
+.login-form-input {
+    padding: 2vw 3vw;
+    border: none;
+}
+
+.login hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+}
+
+.login button {
+    border: none;
+    width: 100%;
+    background-color: #FF8C38;
+    color: white;
+    padding: 3vw;
+    border-radius: 1vw;
+    margin-bottom: 5vw;
+}
+
+.login-createAccount {
+    font-weight: bold;
+    color: #FF8C38;
+}
+
 
 /* ============ Home Page ============*/
 

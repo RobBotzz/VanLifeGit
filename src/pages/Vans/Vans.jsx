@@ -1,18 +1,18 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLoaderData } from "react-router-dom";
 
 import Van from "../../components/Vans/Van.jsx";
 import Loading from "../Loading.jsx";
 
-export default function Vans() {
-  const [vansData, setVansData] = React.useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
+import { getVans } from "../../api.js";
 
-  React.useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => setVansData(data.vans));
-  }, []);
+export async function loader() {
+  return getVans();
+}
+
+export default function Vans() {
+  const vansData = useLoaderData();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const typeFilter = searchParams.get("type");
   const filteredVansData = typeFilter
