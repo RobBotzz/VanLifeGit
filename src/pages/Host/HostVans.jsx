@@ -1,15 +1,15 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api.js";
 
 import HostVanIcon from "../../components/Host/HostVanIcon.jsx";
 
-export default function HostVans() {
-  const [vansData, setVansData] = React.useState(null);
+export function loader() {
+  return getHostVans();
+}
 
-  React.useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => setVansData(data.vans));
-  }, []);
+export default function HostVans() {
+  const vansData = useLoaderData();
 
   const vans = vansData?.map((van) => {
     return (

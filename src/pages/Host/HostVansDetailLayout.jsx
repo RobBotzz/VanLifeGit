@@ -1,23 +1,19 @@
 import React from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api.js";
 
 import VanType from "../../components/Vans/VanType.jsx";
-import Loading from "../Loading.jsx";
 import Nav from "../../components/Nav.jsx";
 import BackLink from "../../components/BackLink.jsx";
 
+export function loader({ params }) {
+  return getHostVans(params.id);
+}
+
 export default function HostVanDetailLayout() {
-  const params = useParams();
+  const vanData = useLoaderData();
 
-  const [vanData, setVanData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setVanData(data.vans));
-  }, [params.id]);
-
-  return vanData ? (
+  return (
     <div className="hostVansDetail">
       <BackLink linkName="Back to all vans" />
       <div className="hostVansDetail-card">
@@ -56,7 +52,5 @@ export default function HostVanDetailLayout() {
         <Outlet context={{ vanData }} />
       </div>
     </div>
-  ) : (
-    <Loading />
   );
 }

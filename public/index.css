@@ -80,22 +80,32 @@ a {
 
 /* Nav */
 
-.nav-link {
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link-text {
     color: #888888;
 }
 
-.nav-link-large {
+.nav-link-img {
+    display: flex;
+    width: 65%;
+}
+
+.nav-link.large {
     font-size: 4.2vw;
     margin-left: 4vw;
     font-weight: bold;
 }
 
-.nav-link-normal {
+.nav-link.normal {
     font-size: 4vw;
     margin-right: 4vw;
 }
 
-.nav-link-small {
+.nav-link.small {
     font-size: 3.8vw;
     margin-right: 3.5vw;
 }
@@ -104,10 +114,11 @@ a {
     color: black;
 }
 
-.nav-link-active {
+.nav-link-text.active {
     color: black;
     border-bottom: 1px solid black;
     padding-bottom: 0.5vw;
+    margin-top: 0.5vw;
 }
 
 /* Van */

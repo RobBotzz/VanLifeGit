@@ -15,6 +15,7 @@ export default function Header() {
           { path: "host", linkName: "Host", end: false },
           { path: "about", linkName: "About", end: false },
           { path: "vans", linkName: "Vans", end: false },
+          { path: "login", imgUrl: "/assets/images/Avatar.png" },
         ]}
       />
     </header>

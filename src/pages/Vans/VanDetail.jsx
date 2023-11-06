@@ -1,27 +1,24 @@
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation, useLoaderData } from "react-router-dom";
 
-import Loading from "../Loading.jsx";
 import VanType from "../../components/Vans/VanType.jsx";
 import BackLink from "../../components/BackLink.jsx";
 
+import { getVans } from "../../api.js";
+
+export function loader({ params }) {
+  return getVans(params.id);
+}
+
 export default function VanDetail() {
-  const params = useParams();
   const location = useLocation();
-
-  const [vanData, setVanData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setVanData(data.vans));
-  }, [params.id]);
+  const vanData = useLoaderData();
 
   //Determine text that backLink displays based on selected filter of previous page
   const prevParams = new URLSearchParams(location.state);
   const backLinkText = `Back to ${prevParams.get("type") || "all"} vans`;
 
-  return vanData ? (
+  return (
     <div className="vanDetail">
       <BackLink linkName={backLinkText} state={location.state} />
 
@@ -32,7 +29,5 @@ export default function VanDetail() {
       <p>{vanData.description}</p>
       <button>Rent this van</button>
     </div>
-  ) : (
-    <Loading />
   );
 }
