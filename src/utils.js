@@ -4,7 +4,9 @@ export async function requireAuth() {
   const isLoggedIn = false;
 
   if (!isLoggedIn) {
-    console.log("Redirected");
-    return redirect("/login");
+    const response = redirect("/login?msg=Login to access the host page");
+    response.body = true;
+    throw response;
   }
+  return null;
 }

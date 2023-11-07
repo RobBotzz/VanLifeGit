@@ -31,7 +31,7 @@ import Layout from "./components/Layout.jsx";
 
 import NotFound from "./pages/NotFound.jsx";
 import Error from "./components/Error.jsx";
-import Login from "./pages/Login.jsx";
+import Login, { loader as loginLoader } from "./pages/Login.jsx";
 
 import { requireAuth } from "./utils.js";
 import "./server.js";
@@ -44,7 +44,7 @@ const router = createBrowserRouter(
 
       <Route path="about" element={<About />} />
 
-      <Route path="login" element={<Login />} />
+      <Route path="login" element={<Login />} loader={loginLoader} />
 
       <Route
         path="vans"
