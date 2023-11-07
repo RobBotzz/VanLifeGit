@@ -31,10 +31,15 @@ import Layout from "./components/Layout.jsx";
 
 import NotFound from "./pages/NotFound.jsx";
 import Error from "./components/Error.jsx";
-import Login, { loader as loginLoader } from "./pages/Login.jsx";
+import Login, {
+  loader as loginLoader,
+  action as loginAction,
+} from "./pages/Login.jsx";
 
 import { requireAuth } from "./utils.js";
 import "./server.js";
+
+localStorage.setItem("isloggedin", false);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,7 +49,12 @@ const router = createBrowserRouter(
 
       <Route path="about" element={<About />} />
 
-      <Route path="login" element={<Login />} loader={loginLoader} />
+      <Route
+        path="login"
+        element={<Login />}
+        loader={loginLoader}
+        action={loginAction}
+      />
 
       <Route
         path="vans"
