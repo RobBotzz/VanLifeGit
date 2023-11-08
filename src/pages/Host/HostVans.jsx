@@ -5,7 +5,7 @@ import { requireAuth } from "../../utils.js";
 
 import HostVanIcon from "../../components/Host/HostVanIcon.jsx";
 
-export async function loader(request) {
+export async function loader({ request }) {
   await requireAuth(request);
   return getHostVans();
 }

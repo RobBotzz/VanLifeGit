@@ -8,7 +8,8 @@ import Nav from "../../components/Nav.jsx";
 import BackLink from "../../components/BackLink.jsx";
 
 export async function loader({ params, request }) {
-  await requireAuth({ request });
+  await requireAuth(request);
+  console.log(params.id);
   return getHostVans(params.id);
 }
 
