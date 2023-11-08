@@ -73,12 +73,12 @@ const router = createBrowserRouter(
         <Route
           index
           element={<Dashboard />}
-          loader={async () => await requireAuth()}
+          loader={async (request) => await requireAuth(request)}
         />
         <Route
           path="reviews"
           element={<Reviews />}
-          loader={async () => await requireAuth()}
+          loader={async (request) => await requireAuth(request)}
         />
         <Route
           path="vans"
@@ -95,23 +95,23 @@ const router = createBrowserRouter(
           <Route
             index
             element={<HostVansDetailDetail />}
-            loader={async () => await requireAuth()}
+            loader={async (request) => await requireAuth(request)}
           />
           <Route
             path="pricing"
             element={<HostVansDetailPrice />}
-            loader={async () => await requireAuth()}
+            loader={async (request) => await requireAuth(request)}
           />
           <Route
             path="photos"
             element={<HostVansDetailPhotos />}
-            loader={async () => await requireAuth()}
+            loader={async (request) => await requireAuth(request)}
           />
         </Route>
         <Route
           path="income"
           element={<Income />}
-          loader={async () => await requireAuth()}
+          loader={async (request) => await requireAuth(request)}
         />
       </Route>
 
