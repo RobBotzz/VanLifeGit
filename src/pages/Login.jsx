@@ -1,5 +1,12 @@
 import React from "react";
-import { Link, useLoaderData, Form, redirect } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import { loginUser } from "../api.js";
 
 export function loader({ request }) {
@@ -11,34 +18,23 @@ export async function action({ request }) {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
-  const data = await loginUser({ email, password }).catch(() => {
-    const response = redirect("/login");
-    response.body = true;
-    throw response;
-  });
-  if (data) {
-    localStorage.setItem("isloggedin", true);
+  try {
+    await loginUser({ email, password });
     const response = redirect("/host");
     response.body = true;
-    throw response;
+    console.log("Redirecting to host");
+    localStorage.setItem("isloggedin", true);
+    return response;
+  } catch (err) {
+    console.log("returning error:", err.message);
+    return err.message;
   }
-  return null;
 }
 
 export default function Login() {
-  const [status, setStatus] = React.useState("idle");
-  const [error, setError] = React.useState(null);
+  const status = useNavigation().state;
   const redirectMessage = useLoaderData();
-
-  /*   function handleSubmit(e) {
-    e.preventDefault();
-    setStatus("submitting");
-    setError(null);
-    loginUser(loginFormData)
-      .then((data) => console.log(data))
-      .catch((err) => setError(err))
-      .finally(() => setStatus("idle"));
-  } */
+  const errorMessage = useActionData();
 
   return (
     <div className="login">
@@ -47,7 +43,7 @@ export default function Login() {
       {redirectMessage && (
         <h3 style={{ marginBottom: "6vw" }}>{redirectMessage}</h3>
       )}
-      {error && <h3>{error.message}</h3>}
+      {errorMessage && <h3>{errorMessage}</h3>}
       <Form method="post" className="login-form" replace>
         <div className="login-form-inputs">
           <input
