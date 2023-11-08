@@ -32,18 +32,20 @@ export async function action({ request }) {
 }
 
 export default function Login() {
-  const status = useNavigation().state;
+  const navigation = useNavigation();
   const redirectMessage = useLoaderData();
   const errorMessage = useActionData();
+
+  const redFont = {
+    color: "red",
+  };
 
   return (
     <div className="login">
       <h2>Sign in to your account</h2>
       (Email: b@b.com, Password: p123)
-      {redirectMessage && (
-        <h3 style={{ marginBottom: "6vw" }}>{redirectMessage}</h3>
-      )}
-      {errorMessage && <h3>{errorMessage}</h3>}
+      {(errorMessage && <h3 style={redFont}>{errorMessage}</h3>) ||
+        (redirectMessage && <h3 style={redFont}>{redirectMessage}</h3>)}
       <Form method="post" className="login-form" replace>
         <div className="login-form-inputs">
           <input
@@ -60,8 +62,8 @@ export default function Login() {
             placeholder="Password"
           />
         </div>
-        <button disabled={status === "submitting"}>
-          {status === "submitting" ? "Signing in..." : "Sign in"}
+        <button disabled={navigation.state === "submitting"}>
+          {navigation.state === "submitting" ? "Signing in..." : "Sign in"}
         </button>
       </Form>
       <p>
