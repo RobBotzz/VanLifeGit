@@ -3,3 +3,5 @@ What to do //////
 - Make loading screen take full height to center "Loading..."
 
 - Improve performance (less API requests)
+
+- Find out how to display Error screen when van-id does not exist

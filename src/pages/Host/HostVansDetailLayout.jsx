@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Outlet, useLoaderData, defer, Await } from "react-router-dom";
-import { getHostVans } from "../../api.js";
+import { getVan } from "../../api.js";
 import { requireAuth } from "../../utils.js";
 
 import VanType from "../../components/Vans/VanType.jsx";
@@ -10,7 +10,7 @@ import Loading from "../../components/Loading.jsx";
 
 export async function loader({ params, request }) {
   await requireAuth(request);
-  return defer({ van: getHostVans(params.id) });
+  return defer({ van: getVan(params.id) });
 }
 
 function renderVanDetails(vanData) {

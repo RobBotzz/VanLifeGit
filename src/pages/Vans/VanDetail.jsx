@@ -5,10 +5,10 @@ import VanType from "../../components/Vans/VanType.jsx";
 import BackLink from "../../components/BackLink.jsx";
 import Loading from "../../components/Loading.jsx";
 
-import { getVans } from "../../api.js";
+import { getVan } from "../../api.js";
 
 export function loader({ params }) {
-  return defer({ van: getVans(params.id) });
+  return defer({ van: getVan(params.id) });
 }
 
 function renderVanDetails(vanData) {

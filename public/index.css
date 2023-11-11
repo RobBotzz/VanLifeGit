@@ -103,6 +103,7 @@ a {
 .nav-link.normal {
     font-size: 4vw;
     margin-right: 4vw;
+    margin-left: 5vw;
 }
 
 .nav-link.small {
@@ -135,6 +136,9 @@ a {
     width: 100%;
     border-radius: 5px;
     margin-bottom: 10px;
+    height: 40vw;
+    width: 40vw;
+    object-fit: cover;
 }
 
 .van h3{
@@ -179,6 +183,9 @@ a {
     height: 100%;
     border-radius: 5px;
     margin-right: 4vw;
+    height: 13vw;
+    width: 13vw;
+    object-fit: cover;
 }
 
 .hostVanIcon-text {
@@ -484,11 +491,14 @@ a {
 /* ============ Host =================*/
 
 .hostLayout {
-    padding: 0 5%;
     margin-bottom: 50px;
 }
 
 /* ============ HostVans =================*/
+
+.hostVans {
+    padding: 0 5%;
+}
 
 .hostVans h2 {
     margin: 6vw 0;
@@ -497,6 +507,7 @@ a {
 /* ============ HostVansDetail =================*/
 
 .hostVansDetail {
+    padding: 0 5%;
     margin-top: 10vw;
 }
 
@@ -517,6 +528,9 @@ a {
     height: 100%;
     border-radius: 2px;
     margin-right: 3vw;
+    height: 30vw;
+    width: 30vw;
+    object-fit: cover;
 }
 
 .hostVansDetail-card-header-text {
@@ -599,35 +613,233 @@ a {
     position: relative;
     width: 80px;
     height: 80px;
-  }
-  .lds-facebook div {
+}
+.lds-facebook div {
     display: inline-block;
     position: absolute;
     left: 8px;
     width: 16px;
     background: #000000;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-  }
+}
   .lds-facebook div:nth-child(1) {
     left: 8px;
     animation-delay: -0.24s;
-  }
-  .lds-facebook div:nth-child(2) {
+}
+.lds-facebook div:nth-child(2) {
     left: 32px;
     animation-delay: -0.12s;
-  }
-  .lds-facebook div:nth-child(3) {
+}
+.lds-facebook div:nth-child(3) {
     left: 56px;
     animation-delay: 0;
-  }
-  @keyframes lds-facebook {
+}
+@keyframes lds-facebook {
     0% {
-      top: 8px;
-      height: 64px;
+        top: 8px;
+        height: 64px;
     }
     50%, 100% {
-      top: 24px;
-      height: 32px;
+        top: 24px;
+        height: 32px;
     }
-  }
+}
   
+/* ============ Placeholder-Pages =================*/
+
+.host-dashboard-earnings {
+    margin-top: 5vw;
+    background-color: #ffead0;
+    padding: 37px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.host-dashboard-earnings > .info > h1 {
+    font-size: 36px;
+    color: #161616;
+    margin: 0;
+}
+
+.host-dashboard-earnings > .info > p {
+    color: #4d4d4d;
+}
+
+.host-dashboard-earnings > .info > p > span {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.host-dashboard-earnings > .info > h2 {
+    margin: 0;
+    font-size: 38px;
+    color: #161616;
+    font-weight: 900;
+}
+
+.host-dashboard-reviews {
+    background-color: #ffddb2;
+    padding: 25px 26px;
+    display: flex;
+    align-items: center;
+}
+
+.host-dashboard-reviews > h2 {
+    margin: 0;
+}
+
+.host-dashboard-reviews .star {
+    color: #ff8c38;
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+.host-dashboard-reviews p {
+    margin-left: 5px;
+    font-size: 20px;
+    color: #4d4d4d;
+    margin-right: auto;
+}
+
+.host-dashboard-reviews p > span {
+    font-weight: bold;
+    color: #161616;
+}
+
+.host-dashboard-vans {
+    padding: 38px 26px;
+}
+
+.host-dashboard-vans > .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.host-dashboard-vans .host-vans-list {
+    padding-inline: 0;
+}
+
+.host-income {
+    padding-inline: 26px;
+    color: #161616;
+}
+
+.host-income > p {
+    color: #4d4d4d;
+}
+
+.host-income > p span {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.host-income > h2 {
+    font-size: 38px;
+    color: #161616;
+    font-weight: 900;
+}
+
+img.graph {
+    width: 100%;
+    max-width: 500px;
+}
+
+.host-income .info-header > p {
+    color: #4d4d4d;
+}
+
+.host-income .info-header > p span {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.host-income .info-header > h3 {
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 60px;
+}
+
+.host-income .transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 31px;
+    padding: 35px 29px;
+    border-radius: 6px;
+}
+.host-income .transaction > h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.host-income .transaction > p {
+    font-weight: 500;
+    font-size: 20px;
+    color: #4d4d4d;
+}
+
+.host-reviews {
+    margin-top: 30px;
+    padding-inline: 26px;
+    color: #161616;
+}
+
+.host-reviews .top-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.host-reviews .top-text > h2 {
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.host-reviews .top-text > p {
+    margin: 0;
+    color: #4d4d4d;
+}
+
+.host-reviews .top-text > p span {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.host-reviews > img {
+    margin-bottom: 36px;
+}
+
+.host-reviews .review {
+    margin-block: 25px;
+}
+
+.host-reviews .review .info {
+    display: flex;
+}
+
+.host-reviews .review .name {
+    color: #161616;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.host-reviews .review .date {
+    color: #8c8c8c;
+}
+
+.host-reviews hr {
+    background-color: #c7c7c7;
+    height: 1px;
+    border: 0;
+}
+
+.host-reviews .review-star {
+    color: #ff8c38;
+    margin-right: 5px;
+}

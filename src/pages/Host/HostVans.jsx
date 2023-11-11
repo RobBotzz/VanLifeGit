@@ -9,7 +9,6 @@ import Loading from "../../components/Loading.jsx";
 export async function loader({ request }) {
   await requireAuth(request);
   return defer({ vans: getHostVans() });
-  //defer sth
 }
 
 export default function HostVans() {

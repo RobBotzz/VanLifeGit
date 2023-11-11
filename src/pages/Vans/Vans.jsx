@@ -44,6 +44,7 @@ export default function Vans() {
         />
       );
     });
+
     return (
       <>
         <div className="filters">

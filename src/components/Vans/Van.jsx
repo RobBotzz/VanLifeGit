@@ -7,9 +7,9 @@ import VanType from "./VanType.jsx";
 export default function Van(props) {
   return (
     <Link
-      to={props.id}
+      to={`${props.subpage || ""}${props.id}`}
       className="van-link-wrapper"
-      state={props.searchParams.toString()}
+      state={props.searchParams?.toString()}
     >
       <div className="van">
         <img src={props.img} alt="Shows a van" />
