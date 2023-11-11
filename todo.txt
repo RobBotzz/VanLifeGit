@@ -5,3 +5,5 @@ What to do //////
 - Improve performance (less API requests)
 
 - Find out how to display Error screen when van-id does not exist
+
+- Make that the backlink in hostVansDetailPrice leads back to hostVans
