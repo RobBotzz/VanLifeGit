@@ -1,14 +1,14 @@
 import React from "react";
 import { Form, Link, useActionData, useNavigation } from "react-router-dom";
-import { registerUser } from "../api.js";
-
+/* import { registerUser } from "../api.js";
+ */
 export async function action({ request }) {
-  const formData = await request.formData();
+  /* const formData = await request.formData();
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
   const email = formData.get("email");
   const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword");
+  const confirmPassword = formData.get("confirmPassword"); */
 
   try {
     //registerUser({ firstName, lastName, email, password, confirmPassword });
