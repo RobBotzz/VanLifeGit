@@ -1,23 +1,36 @@
 import React from "react";
-import { Form, Link, useActionData, useNavigation } from "react-router-dom";
-/* import { registerUser } from "../api.js";
- */
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigation,
+  redirect,
+} from "react-router-dom";
+import { registerUser } from "../api.js";
+
 export async function action({ request }) {
-  /* const formData = await request.formData();
+  const formData = await request.formData();
   const firstName = formData.get("firstName");
   const lastName = formData.get("lastName");
   const email = formData.get("email");
   const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword"); */
+  const confirmPassword = formData.get("confirmPassword");
 
   try {
-    //registerUser({ firstName, lastName, email, password, confirmPassword });
+    await registerUser({
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    });
+    //Redirect to host page
+    return redirect("/host");
   } catch (err) {
     //Handle error messages
-    return "Not implemented";
+    console.log("ERROR THROWN");
+    return err.message;
   }
-  //Redirect to host page
-  return null;
 }
 
 export default function Register() {
@@ -36,29 +49,45 @@ export default function Register() {
         <div className="register-row">
           <div className="register-inputElement">
             <p className="register-inputName">First Name</p>
-            <input type="text" className="register-inputField" />
+            <input
+              type="text"
+              className="register-inputField"
+              name="firstName"
+            />
           </div>
           <div className="register-inputElement">
             <p className="register-inputName">Last Name</p>
-            <input type="text" className="register-inputField" />
+            <input
+              type="text"
+              className="register-inputField"
+              name="lastName"
+            />
           </div>
         </div>
         <div className="register-row">
           <div className="register-inputElement">
             <p className="register-inputName">Email</p>
-            <input type="email" className="register-inputField" />
+            <input type="email" className="register-inputField" name="email" />
           </div>
         </div>
         <div className="register-row">
           <div className="register-inputElement">
             <p className="register-inputName">Password</p>
-            <input type="password" className="register-inputField" />
+            <input
+              type="password"
+              className="register-inputField"
+              name="password"
+            />
           </div>
         </div>
         <div className="register-row">
           <div className="register-inputElement">
             <p className="register-inputName">Confirmation Password</p>
-            <input type="password" className="register-inputField" />
+            <input
+              type="password"
+              className="register-inputField"
+              name="confirmPassword"
+            />
           </div>
         </div>
         <button disabled={navigation.state === "submitting"}>

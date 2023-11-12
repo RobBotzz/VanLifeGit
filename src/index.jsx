@@ -40,7 +40,6 @@ import Login, {
 import Register, { action as registerAction } from "./pages/Register.jsx";
 
 import { requireAuth } from "./utils.js";
-import "./server.js";
 
 localStorage.setItem("isloggedin", false);
 

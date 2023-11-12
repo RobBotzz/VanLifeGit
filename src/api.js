@@ -1,10 +1,10 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-} from /*   signInWithEmailAndPassword,
- */ "firebase/auth";
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -13,9 +13,11 @@ import {
   getDoc,
   query,
   where,
-} from "firebase/firestore/lite";
+} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 const firebaseConfig = {
   apiKey: "AIzaSyCQfMYtoD4W0IVBjD5BNUy-7jYqW7mV_hY",
   authDomain: "vanlife-b4be5.firebaseapp.com",
@@ -29,6 +31,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+console.log("Authobject: ", JSON.stringify(auth));
 
 const vansCollectionRef = collection(db, "vans");
 
@@ -73,50 +77,21 @@ export async function registerUser({
   password,
   confirmPassword,
 }) {
-  console.log(
-    "Creds: ",
-    JSON.stringify(firstName, lastName, email, password, confirmPassword)
-  );
-  //Check if inputs are valid
+  if (!firstName) throw new Error("First name must be provided");
+  if (!lastName) throw new Error("Last name must be provided");
+  if (!email) throw new Error("Email must be provided");
+  if (!password) throw new Error("Password must be provided");
+  if (!confirmPassword)
+    throw new Error("Confirmation Password must be provided");
+  if (password !== confirmPassword) throw new Error("Passwords do not match");
 
-  //Try to register a user with firebase
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      console.log("Successfully registered");
-    })
-    .catch((err) => {
-      console.log("EERROR");
-      throw new Error(err);
-    });
-
-  /* signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    }); */
+  await createUserWithEmailAndPassword(auth, email, password).then(() => {
+    //
+  });
 }
 
-export async function loginUser(creds) {
-  const res = await fetch("/api/login", {
-    method: "post",
-    body: JSON.stringify(creds),
+export async function loginUser({ email, password }) {
+  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    //
   });
-  const data = await res.json();
-
-  if (!res.ok) {
-    // eslint-disable-next-line no-throw-literal
-    throw {
-      message: data.message,
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-
-  return data;
 }

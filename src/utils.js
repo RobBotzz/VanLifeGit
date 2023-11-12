@@ -6,11 +6,9 @@ export async function requireAuth(request) {
   const pathname = new URL(request.url);
 
   if (isLoggedIn !== "true") {
-    const response = redirect(
+    throw redirect(
       `/login?msg=Login to access the host page&redirectTo=${pathname}`
     );
-    response.body = true;
-    throw response;
   }
   return null;
 }

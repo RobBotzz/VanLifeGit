@@ -23,10 +23,8 @@ export async function action({ request }) {
     new URL(request.url).searchParams.get("redirectTo") || "/host";
   try {
     await loginUser({ email, password });
-    const response = redirect(pathname);
-    response.body = true;
     localStorage.setItem("isloggedin", true);
-    return response;
+    return redirect(pathname);
   } catch (err) {
     return err.message;
   }
