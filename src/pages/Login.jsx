@@ -42,7 +42,6 @@ export default function Login() {
   return (
     <div className="login">
       <h2>Sign in to your account</h2>
-      (Email: b@b.com, Password: p123)
       {(errorMessage && <h3 style={redFont}>{errorMessage}</h3>) ||
         (redirectMessage && <h3 style={redFont}>{redirectMessage}</h3>)}
       <Form method="post" className="login-form" replace>
