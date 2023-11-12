@@ -11,7 +11,7 @@ export async function action({ request }) {
   const confirmPassword = formData.get("confirmPassword");
 
   try {
-    registerUser({ firstName, lastName, email, password, confirmPassword });
+    //registerUser({ firstName, lastName, email, password, confirmPassword });
   } catch (err) {
     //Handle error messages
     return "Not implemented";
@@ -29,44 +29,37 @@ export default function Register() {
   };
 
   return (
-    <div className="login">
+    <div className="register">
       <h2>Register a new account</h2>
       {errorMessage && <h3 style={redFont}>{errorMessage}</h3>}
-      <Form method="post" className="login-form" replace>
-        <div className="login-form-inputs">
-          <div className="container">
-            <input
-              className="login-form-input"
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-            />
-            <input
-              className="login-form-input"
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-            />
+      <Form method="post" className="register-form" replace>
+        <div className="register-row">
+          <div className="register-inputElement">
+            <p className="register-inputName">First Name</p>
+            <input type="text" className="register-inputField" />
           </div>
-          <input
-            className="login-form-input"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
-          <hr />
-          <input
-            className="login-form-input"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-          <input
-            className="login-form-input"
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-          />
+          <div className="register-inputElement">
+            <p className="register-inputName">Last Name</p>
+            <input type="text" className="register-inputField" />
+          </div>
+        </div>
+        <div className="register-row">
+          <div className="register-inputElement">
+            <p className="register-inputName">Email</p>
+            <input type="email" className="register-inputField" />
+          </div>
+        </div>
+        <div className="register-row">
+          <div className="register-inputElement">
+            <p className="register-inputName">Password</p>
+            <input type="password" className="register-inputField" />
+          </div>
+        </div>
+        <div className="register-row">
+          <div className="register-inputElement">
+            <p className="register-inputName">Confirmation Password</p>
+            <input type="password" className="register-inputField" />
+          </div>
         </div>
         <button disabled={navigation.state === "submitting"}>
           {navigation.state === "submitting" ? "Signing up..." : "Sign up"}
