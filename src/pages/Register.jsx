@@ -24,6 +24,7 @@ export async function action({ request }) {
       password,
       confirmPassword,
     });
+    localStorage.setItem("isloggedin", true);
     //Redirect to host page
     return redirect("/host");
   } catch (err) {
