@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -23,6 +24,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 const vansCollectionRef = collection(db, "vans");
 
@@ -58,6 +60,30 @@ export async function getHostVans() {
     id: doc.id,
   }));
   return dataArr;
+}
+
+export async function registerUser({
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword,
+}) {
+  console.log(
+    "Creds: ",
+    JSON.stringify(firstName, lastName, email, password, confirmPassword)
+  );
+  //Check if inputs are valid
+
+  //Try to register a user with firebase
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      console.log("Successfully registered");
+    })
+    .catch((err) => {
+      console.log("EERROR");
+      throw new Error(err.message);
+    });
 }
 
 export async function loginUser(creds) {

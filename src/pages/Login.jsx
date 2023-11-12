@@ -69,7 +69,7 @@ export default function Login() {
       </Form>
       <p>
         Don't have an account?{" "}
-        <Link to="/login" className="login-createAccount">
+        <Link to="/register" className="login-createAccount">
           Create one now
         </Link>
       </p>

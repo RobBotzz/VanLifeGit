@@ -37,6 +37,7 @@ import Login, {
   loader as loginLoader,
   action as loginAction,
 } from "./pages/Login.jsx";
+import Register, { action as registerAction } from "./pages/Register.jsx";
 
 import { requireAuth } from "./utils.js";
 import "./server.js";
@@ -57,6 +58,8 @@ const router = createBrowserRouter(
         loader={loginLoader}
         action={loginAction}
       />
+
+      <Route path="register" element={<Register />} action={registerAction} />
 
       <Route
         path="vans"
