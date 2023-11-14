@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getAuth } from "firebase/auth";
-
 import Nav from "./Nav.jsx";
 
 export default function Header({ currentUser }) {
