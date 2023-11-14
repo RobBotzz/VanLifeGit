@@ -9,7 +9,13 @@ import {
 } from "react-router-dom";
 import { loginUser } from "../api.js";
 
-export function loader({ request }) {
+export function loader({ request, currentUser }) {
+  //Redirect user to original destination or host route
+  if (currentUser) {
+    const pathname =
+      new URL(request.url).searchParams.get("redirectTo") || "/host";
+    return redirect(pathname);
+  }
   return new URL(request.url).searchParams.get("msg");
 }
 

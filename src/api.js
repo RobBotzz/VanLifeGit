@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -85,13 +86,21 @@ export async function registerUser({
     throw new Error("Confirmation Password must be provided");
   if (password !== confirmPassword) throw new Error("Passwords do not match");
 
-  await createUserWithEmailAndPassword(auth, email, password).then(() => {
-    //
-  });
+  await createUserWithEmailAndPassword(auth, email, password).then(
+    (user) => {}
+  );
 }
 
 export async function loginUser({ email, password }) {
-  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    //
+  await signInWithEmailAndPassword(auth, email, password).then(
+    (userCredential) => {
+      //
+    }
+  );
+}
+
+export async function logoutUser() {
+  signOut(auth).then(() => {
+    console.log("logged out");
   });
 }

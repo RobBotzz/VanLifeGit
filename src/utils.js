@@ -1,11 +1,12 @@
 import { redirect } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 export async function requireAuth(request) {
-  const isLoggedIn = localStorage.getItem("isloggedin");
-  //const isLoggedIn = "true";
+  const auth = getAuth();
+  const user = auth.currentUser;
   const pathname = new URL(request.url);
 
-  if (isLoggedIn !== "true") {
+  if (!user) {
     throw redirect(
       `/login?msg=Login to access the host page&redirectTo=${pathname}`
     );
