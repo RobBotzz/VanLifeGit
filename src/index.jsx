@@ -40,6 +40,10 @@ import Login, {
   action as loginAction,
 } from "./pages/Login.jsx";
 import Register, { action as registerAction } from "./pages/Register.jsx";
+import Logout, {
+  action as logoutAction,
+  loader as logoutLoader,
+} from "./pages/Logout.jsx";
 
 import { requireAuth } from "./utils.js";
 
@@ -72,6 +76,13 @@ function App() {
         />
 
         <Route path="register" element={<Register />} action={registerAction} />
+
+        <Route
+          path="logout"
+          element={<Logout />}
+          loader={logoutLoader}
+          action={logoutAction}
+        />
 
         <Route
           path="vans"

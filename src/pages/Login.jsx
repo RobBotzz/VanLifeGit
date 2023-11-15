@@ -20,7 +20,6 @@ export function loader({ request, currentUser }) {
 }
 
 export async function action({ request }) {
-  localStorage.setItem("isloggedin", false);
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
@@ -29,7 +28,6 @@ export async function action({ request }) {
     new URL(request.url).searchParams.get("redirectTo") || "/host";
   try {
     await loginUser({ email, password });
-    localStorage.setItem("isloggedin", true);
     return redirect(pathname);
   } catch (err) {
     return err.message;

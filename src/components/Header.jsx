@@ -10,9 +10,11 @@ export default function Header({ currentUser }) {
     { path: "vans", linkName: "Vans", end: false },
   ];
   console.log("User: " + currentUser);
-  if (!currentUser) {
-    navLinks.push({ path: "login", imgUrl: "/assets/images/Avatar.png" });
-  }
+  navLinks.push(
+    currentUser
+      ? { path: "logout", imgUrl: "/assets/images/Logout.png" }
+      : { path: "login", imgUrl: "/assets/images/Avatar.png" }
+  );
 
   return (
     <header className="menu">

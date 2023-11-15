@@ -100,7 +100,7 @@ export async function loginUser({ email, password }) {
 }
 
 export async function logoutUser() {
-  signOut(auth).then(() => {
+  await signOut(auth).then(() => {
     console.log("logged out");
   });
 }
