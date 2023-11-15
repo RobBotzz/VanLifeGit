@@ -10,7 +10,7 @@ import {
 import { loginUser } from "../api.js";
 
 export function loader({ request, currentUser }) {
-  //Redirect user to original destination or host route
+  //Redirect user to original destination or host route if already logged in
   if (currentUser) {
     const pathname =
       new URL(request.url).searchParams.get("redirectTo") || "/host";

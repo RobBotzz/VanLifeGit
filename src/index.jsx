@@ -80,7 +80,7 @@ function App() {
         <Route
           path="logout"
           element={<Logout />}
-          loader={logoutLoader}
+          loader={({ request }) => logoutLoader({ request, currentUser })}
           action={logoutAction}
         />
 

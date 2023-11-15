@@ -13,14 +13,14 @@ export function loader({ params }) {
 
 function renderVanDetails(vanData) {
   return (
-    <>
+    <div className="vanDetail-content">
       <img src={vanData.imageUrl} alt="Shows selected van in big" />
       <VanType type={vanData.type} size="normal" />
       <h2>{vanData.name}</h2>
       <h3>${vanData.price}/day</h3>
       <p>{vanData.description}</p>
       <button>Rent this van</button>
-    </>
+    </div>
   );
 }
 

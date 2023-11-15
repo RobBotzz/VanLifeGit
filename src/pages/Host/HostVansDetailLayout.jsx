@@ -58,7 +58,11 @@ export default function HostVanDetailLayout() {
 
   return (
     <div className="hostVansDetail">
-      <BackLink linkName="Back to all vans" />
+      <BackLink
+        linkName="Back to all vans"
+        path="/host/vans"
+        toggleRoute={true}
+      />
       <Suspense fallback={<Loading />}>
         <Await resolve={loaderData.van}>{renderVanDetails}</Await>
       </Suspense>
