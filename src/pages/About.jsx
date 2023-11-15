@@ -1,7 +1,5 @@
 import React from "react";
 
-import { logoutUser } from "../api.js";
-
 import { Link } from "react-router-dom";
 
 export default function About() {
@@ -26,7 +24,6 @@ export default function About() {
             Explore our vans
           </Link>
         </div>
-        <button onClick={() => logoutUser()}>LOGOUT</button>
       </div>
     </div>
   );
