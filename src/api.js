@@ -12,8 +12,11 @@ import {
   getDocs,
   doc,
   getDoc,
+  setDoc,
+  addDoc,
   query,
   where,
+  Timestamp,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -33,8 +36,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-console.log("Authobject: ", JSON.stringify(auth));
-
 const vansCollectionRef = collection(db, "vans");
 
 export async function getVans(id) {
@@ -50,7 +51,7 @@ export async function getVan(id) {
   const docRef = doc(db, "vans", id);
   const vanSnapshot = await getDoc(docRef);
   if (!vanSnapshot.data()) {
-    console.log("Error geschmissen");
+    console.log("Error thrown");
     const error = new Error("Could not load van data");
     error.body = true;
     throw error;
@@ -61,8 +62,8 @@ export async function getVan(id) {
   };
 }
 
-export async function getHostVans() {
-  const q = query(vansCollectionRef, where("hostId", "==", 123));
+export async function getHostVans(currentUser) {
+  const q = query(vansCollectionRef, where("hostId", "==", currentUser.uid));
   let querySnapshot = await getDocs(q);
   const dataArr = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
@@ -87,7 +88,19 @@ export async function registerUser({
   if (password !== confirmPassword) throw new Error("Passwords do not match");
 
   await createUserWithEmailAndPassword(auth, email, password).then(
-    (user) => {}
+    (userCredential) => {
+      const user = userCredential.user;
+      const newUserRef = doc(db, "users", user.uid);
+
+      setDoc(newUserRef, {
+        first_name: firstName,
+        last_name: lastName,
+        premium: false,
+        creation_date: Timestamp.now(),
+        income: 0,
+        rating: null,
+      });
+    }
   );
 }
 
@@ -102,5 +115,35 @@ export async function loginUser({ email, password }) {
 export async function logoutUser() {
   await signOut(auth).then(() => {
     console.log("logged out");
+  });
+}
+
+export async function getUserData(userId) {
+  const userRef = doc(db, "users", userId);
+  const docSnap = await getDoc(userRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return null;
+  }
+}
+
+export async function createVan(
+  hostId,
+  name,
+  price,
+  type,
+  description,
+  isPublic
+) {
+  //HIER CONSTRAINTS
+
+  addDoc(vansCollectionRef, {
+    hostId: hostId,
+    name: name,
+    price: Number(price),
+    type: type,
+    description: description,
+    isPublic: isPublic === "on",
   });
 }

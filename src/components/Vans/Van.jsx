@@ -12,7 +12,10 @@ export default function Van(props) {
       state={props.searchParams?.toString()}
     >
       <div className="van">
-        <img src={props.img} alt="Shows a van" />
+        <img
+          src={props.img || "/assets/images/vanDefaultImage.png"}
+          alt="Shows a van"
+        />
         <div className="container">
           <h3>{props.name}</h3>
           <h3>${props.price}/day</h3>

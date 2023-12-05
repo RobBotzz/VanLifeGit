@@ -17,7 +17,10 @@ function renderVanDetails(vanData) {
   return (
     <div className="hostVansDetail-card">
       <div className="hostVansDetail-card-header">
-        <img src={vanData.imageUrl} alt="Shows Van" />
+        <img
+          src={vanData.imageUrl || "/assets/images/vanDefaultImage.png"}
+          alt="Shows Van"
+        />
         <div className="hostVansDetail-card-header-text">
           <VanType type={vanData.type} size="small" />
           <h3>{vanData.name}</h3>

@@ -5,7 +5,10 @@ export default function HostVanIcon(props) {
   return (
     <Link to={props.id}>
       <div className="hostVanIcon">
-        <img src={props.img} alt="Shows van" />
+        <img
+          src={props.img || "/assets/images/vanDefaultImage.png"}
+          alt="Shows van"
+        />
         <div className="hostVanIcon-text">
           <h3>{props.name}</h3>
           <p>${props.price}/day</p>

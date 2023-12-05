@@ -173,6 +173,7 @@ a {
 
 .hostVanIcon {
     display: flex;
+    align-items: center;
     padding: 2.6vw;
     height: 18vw;
     background-color: white;
@@ -186,6 +187,12 @@ a {
     height: 13vw;
     width: 13vw;
     object-fit: cover;
+}
+
+.hostVanIcon-defaultVanImage {
+    padding: 2vw;
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
 }
 
 .hostVanIcon-text {
@@ -431,11 +438,12 @@ a {
 }
 
 .logout-homelink {
-    font-size: 4.5vw;
+    font-size: 4vw;
     border: none;
     width: 100%;
     border: 2px solid black;
     color: black;
+    background-color: transparent;
     padding: 3vw;
     border-radius: 1vw;
     margin-bottom: 2vw;
@@ -608,6 +616,65 @@ a {
 
 .hostVans h2 {
     margin: 6vw 0;
+}
+
+.hostVanIcon svg {
+    height: 100%;
+    margin-right: 4vw;
+    height: 14vw;
+    width: 14vw;
+}
+
+/* ============ HostVansAdd ==================*/
+
+.hostVansAdd {
+    padding: 0 5%;
+    margin-top: 10vw;
+}
+
+.hostVansAdd h2 {
+    margin: 6vw 0;
+}
+
+.hostVansAdd-input-normal {
+    width: 100%;
+    padding: 2vw;
+    border: 2px solid #FFDDB2;
+    border-radius: 3px;
+    margin-bottom: 2vw;
+}
+
+.hostVansAdd-input-large {
+    width: 100%;
+    padding: 2vw;
+    height: 25vw;
+    text-align: start;
+    border: 2px solid #FFDDB2;
+    border-radius: 3px;
+    margin-bottom: 2vw;
+}
+
+.hostVansAdd-select {
+    width: 100%;
+    padding: 2vw;
+    border: 2px solid #FFDDB2;
+    border-radius: 3px;
+    margin-bottom: 2vw;
+}
+
+.hostVansAdd-checkbox {
+    padding: 2vw;
+    border: 2px solid #FFDDB2;
+    margin-bottom: 4vw;
+}
+
+.hostVansAdd button {
+    padding: 3vw;
+    color: black;
+    font-weight: bold;
+    border: none;
+    background-color: #FFDDB2;
+    border-radius: 1vw;
 }
 
 /* ============ HostVansDetail =================*/

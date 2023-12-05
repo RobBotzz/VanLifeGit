@@ -2,6 +2,7 @@ import React from "react";
 import {
   useActionData,
   useNavigation,
+  useNavigate,
   Link,
   Form,
   redirect,
@@ -10,9 +11,7 @@ import {
 import { logoutUser } from "../api.js";
 
 export function loader({ request, currentUser }) {
-  console.log("Logout loader started");
   //Redirect user to original destination or home route if already logged out
-  console.log(currentUser);
   if (!currentUser) {
     const pathname =
       new URL(request.url).searchParams.get("redirectTo") || "/home";
@@ -34,6 +33,7 @@ export async function action() {
 export default function Logout() {
   const navigation = useNavigation();
   const errorMessage = useActionData();
+  const navigate = useNavigate();
 
   return (
     <div className="logout">
@@ -57,9 +57,9 @@ export default function Logout() {
           </Form>
         </>
       )}
-      <Link to="/home" className="logout-homelink">
+      <button onClick={() => navigate(-1)} className="logout-homelink">
         Return to Page
-      </Link>
+      </button>
     </div>
   );
 }

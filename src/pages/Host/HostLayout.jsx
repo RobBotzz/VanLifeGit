@@ -1,9 +1,10 @@
 import React from "react";
+import { getUserData } from "../../api.js";
 import { Outlet } from "react-router-dom";
 
 import Nav from "../../components/Nav.jsx";
 
-export default function HostLayout() {
+export default function HostLayout(currentUser) {
   return (
     <div className="hostLayout">
       <Nav
@@ -15,7 +16,7 @@ export default function HostLayout() {
           { path: "reviews", linkName: "Reviews", end: false },
         ]}
       />
-      <Outlet />
+      <Outlet context={getUserData(currentUser.currentUser.uid)} />
     </div>
   );
 }

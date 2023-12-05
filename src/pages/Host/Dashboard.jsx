@@ -1,19 +1,53 @@
 import React, { Suspense } from "react";
-import { Link, defer, Await, useLoaderData } from "react-router-dom";
-import { getHostVans } from "../../api.js";
+import {
+  Link,
+  defer,
+  Await,
+  useLoaderData,
+  useOutletContext,
+} from "react-router-dom";
+import { getHostVans, getUserData } from "../../api.js";
 import { requireAuth } from "../../utils.js";
 import { BsStarFill } from "react-icons/bs";
 
 import Van from "../../components/Vans/Van.jsx";
 import Loading from "../../components/Loading.jsx";
 
-export async function loader({ request }) {
+export async function loader({ request, currentUser }) {
   await requireAuth(request);
-  return defer({ vans: getHostVans() });
+  return defer({
+    vans: getHostVans(currentUser),
+  });
 }
 
 export default function Dashboard() {
   const loaderData = useLoaderData();
+  const userData = useOutletContext();
+
+  function renderDashboardData(userData) {
+    return (
+      <>
+        <section className="host-dashboard-earnings">
+          <div className="info">
+            <h1>Welcome, {userData.first_name}!</h1>
+            <p>
+              Income last <span>30 days</span>
+            </p>
+            <h2>${userData.income}</h2>
+          </div>
+          <Link to="income">Details</Link>
+        </section>
+        <section className="host-dashboard-reviews">
+          <h2>Review score</h2>
+          <BsStarFill className="star" />
+          <p>
+            <span>{userData.rating || "--"}</span>/5
+          </p>
+          <Link to="reviews">Details</Link>
+        </section>
+      </>
+    );
+  }
 
   function renderVanElements(vansData) {
     const vans = vansData?.map((van) => {
@@ -34,24 +68,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <section className="host-dashboard-earnings">
-        <div className="info">
-          <h1>Welcome!</h1>
-          <p>
-            Income last <span>30 days</span>
-          </p>
-          <h2>$2,260</h2>
-        </div>
-        <Link to="income">Details</Link>
-      </section>
-      <section className="host-dashboard-reviews">
-        <h2>Review score</h2>
-        <BsStarFill className="star" />
-        <p>
-          <span>5.0</span>/5
-        </p>
-        <Link to="reviews">Details</Link>
-      </section>
+      <Suspense fallback={<Loading />}>
+        <Await resolve={userData}>{renderDashboardData}</Await>
+      </Suspense>
       <section className="host-dashboard-vans">
         <div className="top">
           <h2>Your listed vans</h2>

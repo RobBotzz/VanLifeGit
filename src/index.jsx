@@ -23,6 +23,9 @@ import Dashboard, {
 } from "./pages/Host/Dashboard.jsx";
 import Reviews from "./pages/Host/Reviews.jsx";
 import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans.jsx";
+import HostVansAdd, {
+  action as hostVansAddAction,
+} from "./pages/Host/HostVansAdd.jsx";
 import HostVansDetailLayout, {
   loader as hostVansDetailLayoutLoader,
 } from "./pages/Host/HostVansDetailLayout.jsx";
@@ -96,9 +99,12 @@ function App() {
           loader={vanDetailLoader}
           errorElement={<Error />}
         />
-
-        <Route path="host" element={<HostLayout />}>
-          <Route index element={<Dashboard />} loader={dashboardLoader} />
+        <Route path="host" element={<HostLayout currentUser={currentUser} />}>
+          <Route
+            index
+            element={<Dashboard />}
+            loader={({ request }) => dashboardLoader({ request, currentUser })}
+          />
           <Route
             path="reviews"
             element={<Reviews />}
@@ -107,8 +113,17 @@ function App() {
           <Route
             path="vans"
             element={<HostVans />}
-            loader={hostVansLoader}
+            loader={async ({ request }) =>
+              await hostVansLoader({ request, currentUser })
+            }
             errorElement={<Error />}
+          />
+          <Route
+            path="vans/add"
+            element={<HostVansAdd />}
+            action={({ request }) =>
+              hostVansAddAction({ request, currentUser })
+            }
           />
           <Route
             path="vans/:id"
