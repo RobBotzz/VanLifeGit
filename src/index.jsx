@@ -121,6 +121,7 @@ function App() {
           <Route
             path="vans/add"
             element={<HostVansAdd />}
+            loader={async ({ request }) => await requireAuth(request)}
             action={({ request }) =>
               hostVansAddAction({ request, currentUser })
             }

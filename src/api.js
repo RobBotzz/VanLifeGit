@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import uuid from "react-uuid";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -18,6 +19,7 @@ import {
   where,
   Timestamp,
 } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -35,6 +37,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 const vansCollectionRef = collection(db, "vans");
 
@@ -130,6 +133,7 @@ export async function getUserData(userId) {
 
 export async function createVan(
   hostId,
+  image,
   name,
   price,
   type,
@@ -137,9 +141,29 @@ export async function createVan(
   isPublic
 ) {
   //HIER CONSTRAINTS
+  if (!hostId) throw new Error("HostID is required");
+  if (!name) throw new Error("Name is required");
+  if (name.length < 5)
+    throw new Error("Name must be at least 5 characters long");
+  if (!price) throw new Error("Price is required");
+  if (price < 1) throw new Error("Price must be a positive number");
+  if (!type) throw new Error("Type is required");
+  if (!description) throw new Error("Description is required");
+  if (description.length < 10)
+    throw new Error("Please enter a more detailed description");
 
+  let imageUrl = "";
+  if (image) {
+    const imageRef = ref(storage, `vanImages/${uuid()}`);
+    uploadBytes(imageRef, image).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        imageUrl = downloadURL;
+      });
+    });
+  }
   addDoc(vansCollectionRef, {
     hostId: hostId,
+    imageUrl: imageUrl,
     name: name,
     price: Number(price),
     type: type,

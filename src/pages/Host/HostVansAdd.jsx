@@ -1,11 +1,12 @@
 import React from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import BackLink from "../../components/BackLink.jsx";
 
 import { createVan } from "../../api.js";
 
 export async function action({ request, currentUser }) {
   const formData = await request.formData();
+  const image = formData.get("vanImage");
   const name = formData.get("name");
   const price = formData.get("price");
   const type = formData.get("type");
@@ -13,22 +14,53 @@ export async function action({ request, currentUser }) {
   const isPublic = formData.get("isPublic");
 
   try {
-    await createVan(currentUser.uid, name, price, type, description, isPublic);
+    await createVan(
+      currentUser.uid,
+      image,
+      name,
+      price,
+      type,
+      description,
+      isPublic
+    );
     return redirect("/host/vans");
   } catch (err) {
-    console.log(err);
     return err.message;
   }
 }
 
 export default function HostVansAdd() {
+  const errorMessage = useActionData();
+
   return (
     <div className="hostVansAdd">
       <BackLink linkName="Back to all vans" />
       <h2>Add a new van</h2>
-      {/* Upload image functionality */}
-      <Form method="post" replace>
-        <input type="file" name="vanImage" accept="image/*" />
+      <Form method="post" encType="multipart/form-data" replace>
+        <label htmlFor="imageUpload">
+          <div className="hostVansAdd-imageUpload-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="none"
+                stroke="black"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M9 12h3m3 0h-3m0 0V9m0 3v3m9-11.4v16.8a.6.6 0 0 1-.6.6H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6Z"
+              />
+            </svg>
+            <p>Add an image</p>
+          </div>
+        </label>
+        <input id="imageUpload" type="file" name="vanImage" accept="image/*" />
+        {errorMessage && (
+          <h3 className="hostVansAdd-errorMessage">{errorMessage}</h3>
+        )}
         <input
           type="name"
           name="name"

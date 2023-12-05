@@ -636,10 +636,37 @@ a {
     margin: 6vw 0;
 }
 
+#imageUpload {
+    display: none;
+}
+
+.hostVansAdd-imageUpload-button p {
+    font-weight: bold;
+}
+
+.hostVansAdd-imageUpload-button {
+    display: flex;
+    align-items: center;
+    height: 18vw;
+    margin-bottom: 2vw;
+}
+
+.hostVansAdd-imageUpload-button > svg {
+    height: 100%;
+    width: auto;
+    margin-right: 3vw;
+}
+
+.hostVansAdd-errorMessage {
+    color: red;
+    margin-bottom: 2vw;
+    margin-left: 1vw;
+}
+
 .hostVansAdd-input-normal {
     width: 100%;
     padding: 2vw;
-    border: 2px solid #FFDDB2;
+    border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 2vw;
 }
@@ -649,7 +676,7 @@ a {
     padding: 2vw;
     height: 25vw;
     text-align: start;
-    border: 2px solid #FFDDB2;
+    border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 2vw;
 }
@@ -657,7 +684,7 @@ a {
 .hostVansAdd-select {
     width: 100%;
     padding: 2vw;
-    border: 2px solid #FFDDB2;
+    border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 2vw;
 }
