@@ -174,13 +174,19 @@ a {
 .hostVanIcon {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 2.6vw;
     height: 18vw;
     background-color: white;
     margin-bottom: 2vw;
 }
 
-.hostVanIcon img {
+.hostVanIcon-info {
+    display: flex;
+    align-items: center;
+}
+
+.hostVanIcon-info img {
     height: 100%;
     border-radius: 5px;
     margin-right: 4vw;
@@ -189,26 +195,42 @@ a {
     object-fit: cover;
 }
 
-.hostVanIcon-defaultVanImage {
+.hostVanIcon-info-defaultVanImage {
     padding: 2vw;
     background-color: rgb(235, 235, 235);
     border-radius: 5px;
 }
 
-.hostVanIcon-text {
+.hostVanIcon-info-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.hostVanIcon-text h3 {
+.hostVanIcon-info-text h3 {
     margin: 0;
     color: black;
 }
 
-.hostVanIcon-text p {
+.hostVanIcon-info-text p {
     margin: 0;
     color: black;
+}
+
+.hostVanIcon-edit {
+    display: flex;
+    align-items: center;
+}
+
+.hostVanIcon-edit svg {
+    height: 6vw;
+    width: auto;
+    margin-left: 4vw;
+    fill: #4d4d4d;
+}
+
+.hostVanIcon-edit svg:hover {
+    fill: black;
 }
 
 
@@ -618,11 +640,37 @@ a {
     margin: 6vw 0;
 }
 
-.hostVanIcon svg {
+.hostVanIcon-add svg {
     height: 100%;
     margin-right: 4vw;
     height: 14vw;
     width: 14vw;
+}
+
+.hostVanIcon-add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.6vw;
+    height: 18vw;
+    background-color: white;
+    margin-bottom: 2vw;
+}
+
+.hostVanIcon-add-info {
+    display: flex;
+    align-items: center;
+}
+
+.hostVanIcon-add-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hostVanIcon-add-info-text h3 {
+    margin: 0;
+    color: black;
 }
 
 /* ============ HostVansAdd ==================*/
