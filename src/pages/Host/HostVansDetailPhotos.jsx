@@ -7,7 +7,10 @@ export default function HostVansDetailPhotos() {
   return (
     <div className="hostVansDetailPhotos">
       <div className="hostVansDetailPhotos-photos">
-        <img src={vanData.imageUrl} alt="Shows van" />
+        <img
+          src={vanData.imageUrl || "/assets/images/vanDefaultImage.png"}
+          alt="Shows van"
+        />
       </div>
     </div>
   );
