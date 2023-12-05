@@ -140,7 +140,6 @@ export async function createVan(
   description,
   isPublic
 ) {
-  //HIER CONSTRAINTS
   if (!hostId) throw new Error("HostID is required");
   if (!name) throw new Error("Name is required");
   if (name.length < 5)
@@ -155,8 +154,8 @@ export async function createVan(
   let imageUrl = "";
   if (image) {
     const imageRef = ref(storage, `vanImages/${uuid()}`);
-    uploadBytes(imageRef, image).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
+    await uploadBytes(imageRef, image).then(async (snapshot) => {
+      await getDownloadURL(snapshot.ref).then((downloadURL) => {
         imageUrl = downloadURL;
       });
     });
@@ -171,3 +170,5 @@ export async function createVan(
     isPublic: isPublic === "on",
   });
 }
+
+export async function deleteVan() {}

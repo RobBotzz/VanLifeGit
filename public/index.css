@@ -657,6 +657,14 @@ a {
     margin-right: 3vw;
 }
 
+.hostVansAdd-imageUpload-button > img {
+    height: 18vw;
+    width: 18vw;
+    object-fit: cover;
+    margin-right: 3vw;
+    border-radius: .5vw;
+}
+
 .hostVansAdd-errorMessage {
     color: red;
     margin-bottom: 2vw;

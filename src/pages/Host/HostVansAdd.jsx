@@ -30,6 +30,27 @@ export async function action({ request, currentUser }) {
 }
 
 export default function HostVansAdd() {
+  const [selectedFile, setSelectedFile] = React.useState(undefined);
+  const [preview, setPreview] = React.useState(undefined);
+
+  // create a preview as a side effect, whenever selected file is changed
+  React.useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (e.target.files && e.target.files.length !== 0) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
   const errorMessage = useActionData();
 
   return (
@@ -39,25 +60,35 @@ export default function HostVansAdd() {
       <Form method="post" encType="multipart/form-data" replace>
         <label htmlFor="imageUpload">
           <div className="hostVansAdd-imageUpload-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="none"
-                stroke="black"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M9 12h3m3 0h-3m0 0V9m0 3v3m9-11.4v16.8a.6.6 0 0 1-.6.6H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6Z"
-              />
-            </svg>
-            <p>Add an image</p>
+            {preview ? (
+              <img src={preview} alt="Uploaded van" />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="black"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M9 12h3m3 0h-3m0 0V9m0 3v3m9-11.4v16.8a.6.6 0 0 1-.6.6H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6Z"
+                />
+              </svg>
+            )}
+            <p>{preview ? "Change image" : "Add an image"}</p>
           </div>
         </label>
-        <input id="imageUpload" type="file" name="vanImage" accept="image/*" />
+        <input
+          id="imageUpload"
+          type="file"
+          name="vanImage"
+          accept="image/*"
+          onChange={onSelectFile}
+        />
         {errorMessage && (
           <h3 className="hostVansAdd-errorMessage">{errorMessage}</h3>
         )}
