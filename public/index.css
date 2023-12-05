@@ -820,6 +820,11 @@ a {
   
 /* ============ Placeholder-Pages =================*/
 
+.host-dashboard-link {
+    margin-left: 8vw;
+    font-size: 4vw;
+}
+
 .host-dashboard-earnings {
     margin-top: 5vw;
     background-color: #ffead0;
@@ -873,6 +878,7 @@ a {
     font-size: 20px;
     color: #4d4d4d;
     margin-right: auto;
+    text-wrap: nowrap;
 }
 
 .host-dashboard-reviews p > span {
@@ -888,6 +894,11 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5vw;
+}
+
+.host-dashboard-vans > .top > h2 {
+    margin: 0;
 }
 
 .host-dashboard-vans .host-vans-list {

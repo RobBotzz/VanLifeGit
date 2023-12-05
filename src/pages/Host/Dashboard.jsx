@@ -35,7 +35,9 @@ export default function Dashboard() {
             </p>
             <h2>${userData.income}</h2>
           </div>
-          <Link to="income">Details</Link>
+          <Link className="host-dashboard-link" to="income">
+            Details
+          </Link>
         </section>
         <section className="host-dashboard-reviews">
           <h2>Review score</h2>
@@ -43,7 +45,9 @@ export default function Dashboard() {
           <p>
             <span>{userData.rating || "--"}</span>/5
           </p>
-          <Link to="reviews">Details</Link>
+          <Link className="host-dashboard-link" to="reviews">
+            Details
+          </Link>
         </section>
       </>
     );
@@ -74,7 +78,9 @@ export default function Dashboard() {
       <section className="host-dashboard-vans">
         <div className="top">
           <h2>Your listed vans</h2>
-          <Link to="vans">View all</Link>
+          <Link className="host-dashboard-link" to="vans">
+            View all
+          </Link>
         </div>
         <Suspense fallback={<Loading />}>
           <Await resolve={loaderData.vans}>{renderVanElements}</Await>
