@@ -6,7 +6,7 @@ import {
   useLoaderData,
   useOutletContext,
 } from "react-router-dom";
-import { getHostVans, getUserData } from "../../api.js";
+import { getHostVans } from "../../api.js";
 import { requireAuth } from "../../utils.js";
 import { BsStarFill } from "react-icons/bs";
 
