@@ -26,6 +26,14 @@ import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans.jsx";
 import HostVansAdd, {
   action as hostVansAddAction,
 } from "./pages/Host/HostVansAdd.jsx";
+import HostVansEdit, {
+  loader as hostVansEditLoader,
+  action as hostVansEditAction,
+} from "./pages/Host/HostVansEdit.jsx";
+import HostVansDelete, {
+  loader as hostVansDeleteLoader,
+  action as hostVansDeleteAction,
+} from "./pages/Host/HostVansDelete.jsx";
 import HostVansDetailLayout, {
   loader as hostVansDetailLayoutLoader,
 } from "./pages/Host/HostVansDetailLayout.jsx";
@@ -125,6 +133,20 @@ function App() {
             action={({ request }) =>
               hostVansAddAction({ request, currentUser })
             }
+          />
+          <Route
+            path="vans/:id/edit"
+            element={<HostVansEdit />}
+            loader={hostVansEditLoader}
+            action={hostVansEditAction}
+            errorElement={<Error />}
+          />
+          <Route
+            path="vans/:id/delete"
+            element={<HostVansDelete />}
+            loader={hostVansDeleteLoader}
+            action={hostVansDeleteAction}
+            errorElement={<Error />}
           />
           <Route
             path="vans/:id"

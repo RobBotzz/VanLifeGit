@@ -20,7 +20,7 @@ export default function HostVans() {
         <HostVanIcon
           key={van.id}
           id={van.id}
-          img={van.imageUrl}
+          img={van.imageUrls[0]}
           name={van.name}
           price={van.price}
         />

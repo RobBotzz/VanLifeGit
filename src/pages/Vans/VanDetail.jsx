@@ -12,14 +12,29 @@ export function loader({ params }) {
 }
 
 function renderVanDetails(vanData) {
+  const images = vanData.imageUrls.map((url) => {
+    return <img key={url} src={url} alt="Shows selected van" />;
+  });
+  console.log(images);
+  console.log(images.length);
+
   return (
     <div className="vanDetail-content">
-      <img
-        src={vanData.imageUrl || "/assets/images/vanDefaultImage.png"}
-        alt="Shows selected van in big"
-      />
-      <VanType type={vanData.type} size="normal" />
-      <h2>{vanData.name}</h2>
+      {/*Show first image if image links exist*/}
+      {images.length > 0 ? (
+        images[0]
+      ) : (
+        <img
+          className="vanDetail-content-headImage"
+          src={"/assets/images/vanDefaultImage.png"}
+          alt="Shows selected van in big"
+        />
+      )}
+      <div className="vanDetail-content-images">{images}</div>
+      <div className="vanDetail-content-nameRow">
+        <h2>{vanData.name}</h2>
+        <VanType type={vanData.type} size="normal" />
+      </div>
       <h3>${vanData.price}/day</h3>
       <p>{vanData.description}</p>
       <button>Rent this van</button>

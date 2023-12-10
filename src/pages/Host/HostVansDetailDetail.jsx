@@ -19,7 +19,8 @@ export default function HostVansDetailDetail() {
         {vanData.description}
       </h4>
       <h4 className="hostVansDetailDetail-info">
-        <span>Visibility: </span>Public
+        <span>Visibility: </span>
+        {vanData.isPublic ? "Public" : "Private"}
       </h4>
     </div>
   );

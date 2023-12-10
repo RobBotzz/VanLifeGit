@@ -15,11 +15,19 @@ import {
   getDoc,
   setDoc,
   addDoc,
+  deleteDoc,
   query,
   where,
   Timestamp,
 } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+  listAll,
+} from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -41,26 +49,73 @@ const storage = getStorage(app);
 
 const vansCollectionRef = collection(db, "vans");
 
-export async function getVans(id) {
+export async function getVans() {
+  //Fetch van object data
   let querySnapshot = await getDocs(vansCollectionRef);
   const dataArr = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     id: doc.id,
   }));
-  return dataArr;
+
+  //Fetch Image URLs
+  const dataArrWithURLs = await Promise.all(
+    dataArr.map(async (van) => {
+      const pathRef = ref(storage, `vanImages/${van.id}`);
+      try {
+        const imageUrls = await listAll(pathRef)
+          .then((res) => {
+            const urlPromises = res.items.map((itemRef) => {
+              return getDownloadURL(itemRef);
+            });
+            return Promise.all(urlPromises);
+          })
+          .catch((err) => {
+            return [];
+          });
+        return {
+          ...van,
+          imageUrls: imageUrls,
+        };
+      } catch (error) {
+        console.error("Error fetching van URLs:", error);
+        return {
+          ...van,
+          imageUrls: [], // or some default value
+        };
+      }
+    })
+  );
+  return dataArrWithURLs;
 }
 
 export async function getVan(id) {
+  //Fetch van object data
   const docRef = doc(db, "vans", id);
   const vanSnapshot = await getDoc(docRef);
   if (!vanSnapshot.data()) {
-    console.log("Error thrown");
-    const error = new Error("Could not load van data");
-    error.body = true;
-    throw error;
+    throw new Error("Could not load van data");
   }
+
+  //Fetch Image URLs
+  const pathRef = ref(storage, `vanImages/${id}`);
+  const imageUrls = await listAll(pathRef)
+    .then((res) => {
+      const urlPromises = res.items.map((itemRef) => {
+        return getDownloadURL(itemRef);
+      });
+      return Promise.all(urlPromises);
+    })
+    .then((urls) => {
+      // Now, urls is an array of resolved download URLs
+      return urls;
+    })
+    .catch((error) => {
+      return [];
+    });
+  //Return van object data with image URLs
   return {
     ...vanSnapshot.data(),
+    imageUrls: imageUrls,
     id: vanSnapshot.id,
   };
 }
@@ -72,7 +127,36 @@ export async function getHostVans(currentUser) {
     ...doc.data(),
     id: doc.id,
   }));
-  return dataArr;
+
+  //Fetch Image URLs
+  const dataArrWithURLs = await Promise.all(
+    dataArr.map(async (van) => {
+      const pathRef = ref(storage, `vanImages/${van.id}`);
+      try {
+        const imageUrls = await listAll(pathRef)
+          .then((res) => {
+            const urlPromises = res.items.map((itemRef) => {
+              return getDownloadURL(itemRef);
+            });
+            return Promise.all(urlPromises);
+          })
+          .catch((err) => {
+            return [];
+          });
+        return {
+          ...van,
+          imageUrls: imageUrls,
+        };
+      } catch (error) {
+        console.error("Error fetching van URLs:", error);
+        return {
+          ...van,
+          imageUrls: [], // or some default value
+        };
+      }
+    })
+  );
+  return dataArrWithURLs;
 }
 
 export async function registerUser({
@@ -117,7 +201,7 @@ export async function loginUser({ email, password }) {
 
 export async function logoutUser() {
   await signOut(auth).then(() => {
-    console.log("logged out");
+    //
   });
 }
 
@@ -140,6 +224,13 @@ export async function createVan(
   description,
   isPublic
 ) {
+  /* SERVERSIDE
+  -> HostId must equal the request's hostId
+  -> Name.length >= 5
+  -> Price >= 1
+  -> Type in (Rugged, Simple, Luxury)
+  -> Description.length >= 10 */
+
   if (!hostId) throw new Error("HostID is required");
   if (!name) throw new Error("Name is required");
   if (name.length < 5)
@@ -151,24 +242,72 @@ export async function createVan(
   if (description.length < 10)
     throw new Error("Please enter a more detailed description");
 
-  let imageUrl = "";
-  if (image) {
-    const imageRef = ref(storage, `vanImages/${uuid()}`);
-    await uploadBytes(imageRef, image).then(async (snapshot) => {
-      await getDownloadURL(snapshot.ref).then((downloadURL) => {
-        imageUrl = downloadURL;
-      });
-    });
-  }
+  //BILD UND OBJEKT MUSS GEMEINSAM GELÖSCHT WERDEN
+  // -> Objekt erst löschen nachdem unter Link kein Bild mehr existiert
+  // -> Bild erst hochladen nachdem Objekt erstellt wurde
+  // -> Bildlink von Objekt erst ändern nachdem vorheriges Bild gelöscht wurde
+
+  //Create van object
   addDoc(vansCollectionRef, {
     hostId: hostId,
-    imageUrl: imageUrl,
     name: name,
     price: Number(price),
     type: type,
     description: description,
     isPublic: isPublic === "on",
+  }).then((docRef) => {
+    //Check if image object is a valid image
+    if (image.type.startsWith("image/") || image === null) {
+      //Upload images of van
+      const imageRef = ref(storage, `vanImages/${docRef.id}/${uuid()}`);
+      uploadBytes(imageRef, image);
+    }
   });
 }
 
-export async function deleteVan() {}
+export async function deleteVan(vanId) {
+  /* SERVERSIDE
+    -> Only delete van object when all images were deleted
+   */
+  //Delete all images from route
+  const imagesRef = ref(storage, `vanImages/${vanId}`);
+  const images = await listAll(imagesRef);
+  await Promise.all(images.items.map((item) => deleteObject(item)));
+
+  //Check if images still exist
+  const updatedItems = await listAll(imagesRef);
+  if (updatedItems.items.length === 0) {
+    deleteDoc(doc(db, "vans", vanId));
+  }
+}
+
+export async function editVan(vanId, name, price, type, description, isPublic) {
+  if (!name) throw new Error("Name is required");
+  if (name.length < 5)
+    throw new Error("Name must be at least 5 characters long");
+  if (!price) throw new Error("Price is required");
+  if (price < 1) throw new Error("Price must be a positive number");
+  if (!type) throw new Error("Type is required");
+  if (!description) throw new Error("Description is required");
+  if (description.length < 10)
+    throw new Error("Please enter a more detailed description");
+
+  const vanRef = doc(vansCollectionRef, vanId);
+
+  const snapshot = await getDoc(vanRef);
+  if (snapshot.exists()) {
+    setDoc(
+      vanRef,
+      {
+        name: name,
+        price: Number(price),
+        type: type,
+        description: description,
+        isPublic: isPublic === "on",
+      },
+      { merge: true }
+    );
+  } else {
+    throw new Error("Van does not exist");
+  }
+}
