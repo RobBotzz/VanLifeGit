@@ -44,8 +44,9 @@ import Income from "./pages/Host/Income.jsx";
 
 import Layout from "./components/Layout.jsx";
 
-import NotFound from "./pages/NotFound.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
 import Error from "./components/Error.jsx";
+import NoPermission from "./pages/NoPermission.jsx";
 import Login, {
   loader as loginLoader,
   action as loginAction,
@@ -70,6 +71,9 @@ function App() {
       setCurrentUser(null);
     }
   });
+
+  const requireAuthLoader = async ({ request }) =>
+    await requireAuth(request, currentUser);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -116,7 +120,7 @@ function App() {
           <Route
             path="reviews"
             element={<Reviews />}
-            loader={async ({ request }) => await requireAuth(request)}
+            loader={requireAuthLoader}
           />
           <Route
             path="vans"
@@ -129,7 +133,7 @@ function App() {
           <Route
             path="vans/add"
             element={<HostVansAdd />}
-            loader={async ({ request }) => await requireAuth(request)}
+            loader={requireAuthLoader}
             action={({ request }) =>
               hostVansAddAction({ request, currentUser })
             }
@@ -137,47 +141,53 @@ function App() {
           <Route
             path="vans/:id/edit"
             element={<HostVansEdit />}
-            loader={hostVansEditLoader}
+            loader={async ({ params, request }) =>
+              hostVansEditLoader({ params, request, currentUser })
+            }
             action={hostVansEditAction}
             errorElement={<Error />}
           />
           <Route
             path="vans/:id/delete"
             element={<HostVansDelete />}
-            loader={hostVansDeleteLoader}
+            loader={async ({ params, request }) =>
+              hostVansDeleteLoader({ params, request, currentUser })
+            }
             action={hostVansDeleteAction}
             errorElement={<Error />}
           />
           <Route
             path="vans/:id"
             element={<HostVansDetailLayout />}
-            loader={hostVansDetailLayoutLoader}
+            loader={async ({ params, request }) =>
+              hostVansDetailLayoutLoader({ params, request, currentUser })
+            }
             errorElement={<Error />}
           >
             <Route
               index
               element={<HostVansDetailDetail />}
-              loader={async ({ request }) => await requireAuth(request)}
+              loader={requireAuthLoader}
             />
             <Route
               path="pricing"
               element={<HostVansDetailPrice />}
-              loader={async ({ request }) => await requireAuth(request)}
+              loader={requireAuthLoader}
             />
             <Route
               path="photos"
               element={<HostVansDetailPhotos />}
-              loader={async ({ request }) => await requireAuth(request)}
+              loader={requireAuthLoader}
             />
           </Route>
           <Route
             path="income"
             element={<Income />}
-            loader={async ({ request }) => await requireAuth(request)}
+            loader={requireAuthLoader}
           />
         </Route>
-
-        <Route path="*" element={<NotFound />} />
+        <Route path="no-permission" element={<NoPermission />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     )
   );

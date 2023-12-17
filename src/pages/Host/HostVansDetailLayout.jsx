@@ -1,15 +1,15 @@
 import React, { Suspense } from "react";
 import { Outlet, useLoaderData, defer, Await, Link } from "react-router-dom";
 import { getVan } from "../../api.js";
-import { requireAuth } from "../../utils.js";
+import { requireAuthVan } from "../../utils.js";
 
 import VanType from "../../components/Vans/VanType.jsx";
 import Nav from "../../components/Nav.jsx";
 import BackLink from "../../components/BackLink.jsx";
 import Loading from "../../components/Loading.jsx";
 
-export async function loader({ params, request }) {
-  await requireAuth(request);
+export async function loader({ params, request, currentUser }) {
+  await requireAuthVan(params, request, currentUser);
   return defer({ van: getVan(params.id) });
 }
 

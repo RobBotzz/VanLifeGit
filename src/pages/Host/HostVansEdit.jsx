@@ -11,10 +11,10 @@ import BackLink from "../../components/BackLink.jsx";
 import Loading from "../../components/Loading.jsx";
 
 import { editVan, getVan } from "../../api.js";
-import { requireAuth } from "../../utils.js";
+import { requireAuthVan } from "../../utils.js";
 
-export async function loader({ request, params }) {
-  await requireAuth(request);
+export async function loader({ params, request, currentUser }) {
+  await requireAuthVan(params, request, currentUser);
   return defer({ van: getVan(params.id) });
 }
 
@@ -69,7 +69,6 @@ function renderForm(vanData) {
           accept="image/*"
           onChange={onSelectFile}
         /> */
-  console.log(vanData);
   return (
     <>
       <input

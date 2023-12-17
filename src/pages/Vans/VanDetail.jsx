@@ -5,9 +5,11 @@ import VanType from "../../components/Vans/VanType.jsx";
 import BackLink from "../../components/BackLink.jsx";
 import Loading from "../../components/Loading.jsx";
 
+import VanError from "../VanError.jsx";
+
 import { getVan } from "../../api.js";
 
-export function loader({ params }) {
+export async function loader({ params }) {
   return defer({ van: getVan(params.id) });
 }
 
@@ -15,8 +17,6 @@ function renderVanDetails(vanData) {
   const images = vanData.imageUrls.map((url) => {
     return <img key={url} src={url} alt="Shows selected van" />;
   });
-  console.log(images);
-  console.log(images.length);
 
   return (
     <div className="vanDetail-content">
@@ -54,7 +54,9 @@ export default function VanDetail() {
     <div className="vanDetail">
       <BackLink linkName={backLinkText} state={location.state} />
       <Suspense fallback={<Loading />}>
-        <Await resolve={loaderData.van}>{renderVanDetails}</Await>
+        <Await resolve={loaderData.van} errorElement={<VanError />}>
+          {renderVanDetails}
+        </Await>
       </Suspense>
     </div>
   );

@@ -8,14 +8,14 @@ import {
   Form,
 } from "react-router-dom";
 import { getVan, deleteVan } from "../../api.js";
-import { requireAuth } from "../../utils.js";
+import { requireAuthVan } from "../../utils.js";
 
 import Loading from "../../components/Loading.jsx";
 import BackLink from "../../components/BackLink.jsx";
 import VanType from "../../components/Vans/VanType.jsx";
 
-export async function loader({ params, request }) {
-  await requireAuth(request);
+export async function loader({ params, request, currentUser }) {
+  await requireAuthVan(params, request, currentUser);
   return defer({ van: getVan(params.id) });
 }
 

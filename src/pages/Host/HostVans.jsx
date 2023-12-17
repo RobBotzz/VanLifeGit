@@ -7,7 +7,7 @@ import HostVanIcon from "../../components/Host/HostVanIcon.jsx";
 import Loading from "../../components/Loading.jsx";
 
 export async function loader({ request, currentUser }) {
-  await requireAuth(request);
+  await requireAuth(request, currentUser);
   return defer({ vans: getHostVans(currentUser) });
 }
 

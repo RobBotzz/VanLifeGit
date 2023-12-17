@@ -77,7 +77,6 @@ export async function getVans() {
           imageUrls: imageUrls,
         };
       } catch (error) {
-        console.error("Error fetching van URLs:", error);
         return {
           ...van,
           imageUrls: [], // or some default value
@@ -92,8 +91,9 @@ export async function getVan(id) {
   //Fetch van object data
   const docRef = doc(db, "vans", id);
   const vanSnapshot = await getDoc(docRef);
-  if (!vanSnapshot.data()) {
-    throw new Error("Could not load van data");
+
+  if (!vanSnapshot.exists()) {
+    throw new Error("The van you are looking for does not exist");
   }
 
   //Fetch Image URLs
