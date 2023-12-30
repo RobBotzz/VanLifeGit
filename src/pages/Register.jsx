@@ -10,20 +10,10 @@ import { registerUser } from "../api.js";
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const firstName = formData.get("firstName");
-  const lastName = formData.get("lastName");
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword");
+  const updates = Object.fromEntries(formData);
 
   try {
-    await registerUser({
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-    });
+    await registerUser(updates);
     //Redirect to host page
     return redirect("/host");
   } catch (err) {

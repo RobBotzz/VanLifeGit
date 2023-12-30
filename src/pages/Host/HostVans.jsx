@@ -7,6 +7,9 @@ import HostVanIcon from "../../components/Host/HostVanIcon.jsx";
 import Loading from "../../components/Loading.jsx";
 
 export async function loader({ request, currentUser }) {
+  //Show loading element while user is still initializing
+  if (currentUser === undefined) return defer({ van: new Promise(() => {}) });
+
   await requireAuth(request, currentUser);
   return defer({ vans: getHostVans(currentUser) });
 }
@@ -14,26 +17,26 @@ export async function loader({ request, currentUser }) {
 export default function HostVans() {
   const loaderData = useLoaderData();
 
-  function renderVanElements(vansData) {
-    const vans = vansData?.map((van) => {
-      return (
-        <HostVanIcon
-          key={van.id}
-          id={van.id}
-          img={van.imageUrls[0]}
-          name={van.name}
-          price={van.price}
-        />
-      );
-    });
-    return vans;
-  }
-
   return (
     <div className="hostVans">
       <h2>Your listed vans</h2>
       <Suspense fallback={<Loading />}>
-        <Await resolve={loaderData.vans}>{renderVanElements}</Await>
+        <Await resolve={loaderData.vans}>
+          {(vansData) => {
+            const vans = vansData?.map((van) => {
+              return (
+                <HostVanIcon
+                  key={van.id}
+                  id={van.id}
+                  img={van.imageUrls[0]}
+                  name={van.name}
+                  price={van.price}
+                />
+              );
+            });
+            return vans;
+          }}
+        </Await>
         <Link to="add">
           <div className="hostVanIcon-add">
             <div className="hostVanIcon-add-info">

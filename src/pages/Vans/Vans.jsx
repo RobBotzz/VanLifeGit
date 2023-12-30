@@ -26,65 +26,71 @@ export default function Vans() {
     });
   }
 
-  function renderVanElements(vansData) {
-    const filteredVansData = typeFilter
-      ? vansData?.filter((van) => van.type.toLowerCase() === typeFilter)
-      : vansData;
-
-    const vans = filteredVansData?.map((van) => {
-      return (
-        <Van
-          key={van.id}
-          searchParams={searchParams}
-          id={van.id}
-          img={van.imageUrls[0]}
-          name={van.name}
-          price={van.price}
-          type={van.type}
-        />
-      );
-    });
-
-    return (
-      <>
-        <div className="filters">
-          <p
-            className={`filter simple ${typeFilter === "simple" && "selected"}`}
-            onClick={() => handleFilterChange("type", "simple")}
-          >
-            Simple
-          </p>
-          <p
-            className={`filter luxury ${typeFilter === "luxury" && "selected"}`}
-            onClick={() => handleFilterChange("type", "luxury")}
-          >
-            Luxury
-          </p>
-          <p
-            className={`filter rugged ${typeFilter === "rugged" && "selected"}`}
-            onClick={() => handleFilterChange("type", "rugged")}
-          >
-            Rugged
-          </p>
-          {typeFilter && (
-            <p
-              className="clear-filter"
-              onClick={() => handleFilterChange("type", null)}
-            >
-              Clear filters
-            </p>
-          )}
-        </div>
-        <div className="vans-container">{vans}</div>
-      </>
-    );
-  }
-
   return (
     <div className="vans">
       <h2>Explore our van options</h2>
       <Suspense fallback={<Loading />}>
-        <Await resolve={loaderData.vans}>{renderVanElements}</Await>
+        <Await resolve={loaderData.vans}>
+          {(vansData) => {
+            const filteredVansData = typeFilter
+              ? vansData?.filter((van) => van.type.toLowerCase() === typeFilter)
+              : vansData;
+
+            const vans = filteredVansData?.map((van) => {
+              return (
+                <Van
+                  key={van.id}
+                  searchParams={searchParams}
+                  id={van.id}
+                  img={van.imageUrls[0]}
+                  name={van.name}
+                  price={van.price}
+                  type={van.type}
+                />
+              );
+            });
+
+            return (
+              <>
+                <div className="filters">
+                  <p
+                    className={`filter simple ${
+                      typeFilter === "simple" && "selected"
+                    }`}
+                    onClick={() => handleFilterChange("type", "simple")}
+                  >
+                    Simple
+                  </p>
+                  <p
+                    className={`filter luxury ${
+                      typeFilter === "luxury" && "selected"
+                    }`}
+                    onClick={() => handleFilterChange("type", "luxury")}
+                  >
+                    Luxury
+                  </p>
+                  <p
+                    className={`filter rugged ${
+                      typeFilter === "rugged" && "selected"
+                    }`}
+                    onClick={() => handleFilterChange("type", "rugged")}
+                  >
+                    Rugged
+                  </p>
+                  {typeFilter && (
+                    <p
+                      className="clear-filter"
+                      onClick={() => handleFilterChange("type", null)}
+                    >
+                      Clear filters
+                    </p>
+                  )}
+                </div>
+                <div className="vans-container">{vans}</div>
+              </>
+            );
+          }}
+        </Await>
       </Suspense>
     </div>
   );

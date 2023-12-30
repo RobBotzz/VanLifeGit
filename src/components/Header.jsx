@@ -9,7 +9,6 @@ export default function Header({ currentUser }) {
     { path: "about", linkName: "About", end: false },
     { path: "vans", linkName: "Vans", end: false },
   ];
-  console.log("User: " + currentUser);
   navLinks.push(
     currentUser
       ? { path: "logout", imgUrl: "/assets/images/Logout.png" }

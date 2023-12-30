@@ -7,22 +7,17 @@ import { createVan } from "../../api.js";
 export async function action({ request, currentUser }) {
   const formData = await request.formData();
   const image = formData.get("vanImage");
-  const name = formData.get("name");
-  const price = formData.get("price");
-  const type = formData.get("type");
-  const description = formData.get("description");
   const isPublic = formData.get("isPublic");
+  const updates = {
+    ...Object.fromEntries(formData),
+    image: image,
+    isPublic: isPublic,
+  };
+
+  const hostId = currentUser.uid;
 
   try {
-    await createVan(
-      currentUser.uid,
-      image,
-      name,
-      price,
-      type,
-      description,
-      isPublic
-    );
+    await createVan({ hostId, ...updates });
     return redirect("/host/vans");
   } catch (err) {
     return err.message;

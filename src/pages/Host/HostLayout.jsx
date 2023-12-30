@@ -16,7 +16,13 @@ export default function HostLayout(currentUser) {
           { path: "reviews", linkName: "Reviews", end: false },
         ]}
       />
-      <Outlet context={getUserData(currentUser.currentUser.uid)} />
+      <Outlet
+        context={
+          currentUser.currentUser
+            ? getUserData(currentUser.currentUser.uid)
+            : new Promise(() => {})
+        }
+      />
     </div>
   );
 }

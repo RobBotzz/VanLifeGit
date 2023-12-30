@@ -93,7 +93,7 @@ export async function getVan(id) {
   const vanSnapshot = await getDoc(docRef);
 
   if (!vanSnapshot.exists()) {
-    throw new Error("The van you are looking for does not exist");
+    return new Error("The van you are looking for does not exist");
   }
 
   //Fetch Image URLs
@@ -109,7 +109,7 @@ export async function getVan(id) {
       // Now, urls is an array of resolved download URLs
       return urls;
     })
-    .catch((error) => {
+    .catch(() => {
       return [];
     });
   //Return van object data with image URLs
@@ -215,15 +215,15 @@ export async function getUserData(userId) {
   }
 }
 
-export async function createVan(
+export async function createVan({
   hostId,
   image,
   name,
   price,
   type,
   description,
-  isPublic
-) {
+  isPublic,
+}) {
   /* SERVERSIDE
   -> HostId must equal the request's hostId
   -> Name.length >= 5
@@ -281,7 +281,14 @@ export async function deleteVan(vanId) {
   }
 }
 
-export async function editVan(vanId, name, price, type, description, isPublic) {
+export async function editVan({
+  vanId,
+  name,
+  price,
+  type,
+  description,
+  isPublic,
+}) {
   if (!name) throw new Error("Name is required");
   if (name.length < 5)
     throw new Error("Name must be at least 5 characters long");
