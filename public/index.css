@@ -1100,6 +1100,7 @@ a {
     padding: 12vw;
     text-align: center;
     max-width: 800px;
+    min-height: 700px;
 }
 
 .mobileOnlyDisclaimer svg {
