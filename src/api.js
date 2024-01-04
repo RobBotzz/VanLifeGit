@@ -217,7 +217,7 @@ export async function getUserData(userId) {
 
 export async function createVan({
   hostId,
-  image,
+  images,
   name,
   price,
   type,
@@ -256,12 +256,14 @@ export async function createVan({
     description: description,
     isPublic: isPublic === "on",
   }).then((docRef) => {
-    //Check if image object is a valid image
-    if (image.type.startsWith("image/") || image === null) {
-      //Upload images of van
-      const imageRef = ref(storage, `vanImages/${docRef.id}/${uuid()}`);
-      uploadBytes(imageRef, image);
-    }
+    images.forEach((image) => {
+      // Check if the file is an image or if it's null (you can adjust the condition as needed)
+      if (image && image.type.startsWith("image/")) {
+        // Upload images of the van
+        const imageRef = ref(storage, `vanImages/${docRef.id}/${uuid()}`);
+        uploadBytes(imageRef, image);
+      }
+    });
   });
 }
 
@@ -274,7 +276,7 @@ export async function deleteVan(vanId) {
   const images = await listAll(imagesRef);
   await Promise.all(images.items.map((item) => deleteObject(item)));
 
-  //Check if images still exist
+  //Check if images still exist and delete van object if not
   const updatedItems = await listAll(imagesRef);
   if (updatedItems.items.length === 0) {
     deleteDoc(doc(db, "vans", vanId));
